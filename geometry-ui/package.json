@@ -1,8 +1,8 @@
 {
-  "name": "ruoyi",
+  "name": "FileSystem",
   "version": "3.2.0",
-  "description": "若依管理系统",
-  "author": "若依",
+  "description": "文件示踪系统",
+  "author": "xqh",
   "license": "MIT",
   "scripts": {
     "dev": "vue-cli-service serve",

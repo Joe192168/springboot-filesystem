@@ -12,7 +12,7 @@
  Target Server Version : 110006
  File Encoding         : 65001
 
- Date: 14/10/2022 11:11:44
+ Date: 14/10/2022 11:52:07
 */
 
 
@@ -245,6 +245,229 @@ CREATE TABLE "public"."gen_table_column" (
 -- ----------------------------
 -- Records of gen_table_column
 -- ----------------------------
+
+-- ----------------------------
+-- Table structure for qrtz_blob_triggers
+-- ----------------------------
+DROP TABLE IF EXISTS "public"."qrtz_blob_triggers";
+CREATE TABLE "public"."qrtz_blob_triggers" (
+  "sched_name" varchar(120) COLLATE "pg_catalog"."default" NOT NULL,
+  "trigger_name" varchar(200) COLLATE "pg_catalog"."default" NOT NULL,
+  "trigger_group" varchar(200) COLLATE "pg_catalog"."default" NOT NULL,
+  "blob_data" bytea
+)
+;
+
+-- ----------------------------
+-- Records of qrtz_blob_triggers
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for qrtz_calendars
+-- ----------------------------
+DROP TABLE IF EXISTS "public"."qrtz_calendars";
+CREATE TABLE "public"."qrtz_calendars" (
+  "sched_name" varchar(120) COLLATE "pg_catalog"."default" NOT NULL,
+  "calendar_name" varchar(200) COLLATE "pg_catalog"."default" NOT NULL,
+  "calendar" bytea NOT NULL
+)
+;
+
+-- ----------------------------
+-- Records of qrtz_calendars
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for qrtz_cron_triggers
+-- ----------------------------
+DROP TABLE IF EXISTS "public"."qrtz_cron_triggers";
+CREATE TABLE "public"."qrtz_cron_triggers" (
+  "sched_name" varchar(120) COLLATE "pg_catalog"."default" NOT NULL,
+  "trigger_name" varchar(200) COLLATE "pg_catalog"."default" NOT NULL,
+  "trigger_group" varchar(200) COLLATE "pg_catalog"."default" NOT NULL,
+  "cron_expression" varchar(200) COLLATE "pg_catalog"."default" NOT NULL,
+  "time_zone_id" varchar(80) COLLATE "pg_catalog"."default"
+)
+;
+
+-- ----------------------------
+-- Records of qrtz_cron_triggers
+-- ----------------------------
+INSERT INTO "public"."qrtz_cron_triggers" VALUES ('RuoyiScheduler', 'TASK_CLASS_NAME1', 'DEFAULT', '0/10 * * * * ?', 'Asia/Shanghai');
+INSERT INTO "public"."qrtz_cron_triggers" VALUES ('RuoyiScheduler', 'TASK_CLASS_NAME2', 'DEFAULT', '0/15 * * * * ?', 'Asia/Shanghai');
+INSERT INTO "public"."qrtz_cron_triggers" VALUES ('RuoyiScheduler', 'TASK_CLASS_NAME3', 'DEFAULT', '0/20 * * * * ?', 'Asia/Shanghai');
+
+-- ----------------------------
+-- Table structure for qrtz_fired_triggers
+-- ----------------------------
+DROP TABLE IF EXISTS "public"."qrtz_fired_triggers";
+CREATE TABLE "public"."qrtz_fired_triggers" (
+  "sched_name" varchar(120) COLLATE "pg_catalog"."default" NOT NULL,
+  "entry_id" varchar(95) COLLATE "pg_catalog"."default" NOT NULL,
+  "trigger_name" varchar(200) COLLATE "pg_catalog"."default" NOT NULL,
+  "trigger_group" varchar(200) COLLATE "pg_catalog"."default" NOT NULL,
+  "instance_name" varchar(200) COLLATE "pg_catalog"."default" NOT NULL,
+  "fired_time" int8 NOT NULL,
+  "sched_time" int8 NOT NULL,
+  "priority" int4 NOT NULL,
+  "state" varchar(16) COLLATE "pg_catalog"."default" NOT NULL,
+  "job_name" varchar(200) COLLATE "pg_catalog"."default",
+  "job_group" varchar(200) COLLATE "pg_catalog"."default",
+  "is_nonconcurrent" varchar(1) COLLATE "pg_catalog"."default",
+  "requests_recovery" varchar(1) COLLATE "pg_catalog"."default"
+)
+;
+
+-- ----------------------------
+-- Records of qrtz_fired_triggers
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for qrtz_job_details
+-- ----------------------------
+DROP TABLE IF EXISTS "public"."qrtz_job_details";
+CREATE TABLE "public"."qrtz_job_details" (
+  "sched_name" varchar(120) COLLATE "pg_catalog"."default" NOT NULL,
+  "job_name" varchar(200) COLLATE "pg_catalog"."default" NOT NULL,
+  "job_group" varchar(200) COLLATE "pg_catalog"."default" NOT NULL,
+  "description" varchar(250) COLLATE "pg_catalog"."default",
+  "job_class_name" varchar(250) COLLATE "pg_catalog"."default" NOT NULL,
+  "is_durable" varchar(1) COLLATE "pg_catalog"."default" NOT NULL,
+  "is_nonconcurrent" varchar(1) COLLATE "pg_catalog"."default" NOT NULL,
+  "is_update_data" varchar(1) COLLATE "pg_catalog"."default" NOT NULL,
+  "requests_recovery" varchar(1) COLLATE "pg_catalog"."default" NOT NULL,
+  "job_data" bytea
+)
+;
+
+-- ----------------------------
+-- Records of qrtz_job_details
+-- ----------------------------
+INSERT INTO "public"."qrtz_job_details" VALUES ('RuoyiScheduler', 'TASK_CLASS_NAME1', 'DEFAULT', NULL, 'com.ruoyi.quartz.util.QuartzDisallowConcurrentExecution', '0', '1', '0', '0', E'\\254\\355\\000\\005sr\\000\\025org.quartz.JobDataMap\\237\\260\\203\\350\\277\\251\\260\\313\\002\\000\\000xr\\000&org.quartz.utils.StringKeyDirtyFlagMap\\202\\010\\350\\303\\373\\305](\\002\\000\\001Z\\000\\023allowsTransientDataxr\\000\\035org.quartz.utils.DirtyFlagMap\\023\\346.\\255(v\\012\\316\\002\\000\\002Z\\000\\005dirtyL\\000\\003mapt\\000\\017Ljava/util/Map;xp\\001sr\\000\\021java.util.HashMap\\005\\007\\332\\301\\303\\026`\\321\\003\\000\\002F\\000\\012loadFactorI\\000\\011thresholdxp?@\\000\\000\\000\\000\\000\\014w\\010\\000\\000\\000\\020\\000\\000\\000\\001t\\000\\017TASK_PROPERTIESsr\\000\\036com.ruoyi.quartz.domain.SysJob\\000\\000\\000\\000\\000\\000\\000\\001\\002\\000\\010L\\000\\012concurrentt\\000\\022Ljava/lang/String;L\\000\\016cronExpressionq\\000~\\000\\011L\\000\\014invokeTargetq\\000~\\000\\011L\\000\\010jobGroupq\\000~\\000\\011L\\000\\005jobIdt\\000\\020Ljava/lang/Long;L\\000\\007jobNameq\\000~\\000\\011L\\000\\015misfirePolicyq\\000~\\000\\011L\\000\\006statusq\\000~\\000\\011xr\\000''com.ruoyi.common.core.domain.BaseEntity\\000\\000\\000\\000\\000\\000\\000\\001\\002\\000\\011L\\000\\011beginTimeq\\000~\\000\\011L\\000\\010createByq\\000~\\000\\011L\\000\\012createTimet\\000\\020Ljava/util/Date;L\\000\\007endTimeq\\000~\\000\\011L\\000\\006paramsq\\000~\\000\\003L\\000\\006remarkq\\000~\\000\\011L\\000\\013searchValueq\\000~\\000\\011L\\000\\010updateByq\\000~\\000\\011L\\000\\012updateTimeq\\000~\\000\\014xppt\\000\\005adminsr\\000\\016java.util.Datehj\\201\\001KYt\\031\\003\\000\\000xpw\\010\\000\\000\\001uN\\375J\\300xppt\\000\\000pppt\\000\\0011t\\000\\0160/10 * * * * ?t\\000\\021ryTask.ryNoParamst\\000\\007DEFAULTsr\\000\\016java.lang.Long;\\213\\344\\220\\314\\217#\\337\\002\\000\\001J\\000\\005valuexr\\000\\020java.lang.Number\\206\\254\\225\\035\\013\\224\\340\\213\\002\\000\\000xp\\000\\000\\000\\000\\000\\000\\000\\001t\\000\\030\\347\\263\\273\\347\\273\\237\\351\\273\\230\\350\\256\\244\\357\\274\\210\\346\\227\\240\\345\\217\\202\\357\\274\\211t\\000\\0013t\\000\\0011x\\000');
+INSERT INTO "public"."qrtz_job_details" VALUES ('RuoyiScheduler', 'TASK_CLASS_NAME2', 'DEFAULT', NULL, 'com.ruoyi.quartz.util.QuartzDisallowConcurrentExecution', '0', '1', '0', '0', E'\\254\\355\\000\\005sr\\000\\025org.quartz.JobDataMap\\237\\260\\203\\350\\277\\251\\260\\313\\002\\000\\000xr\\000&org.quartz.utils.StringKeyDirtyFlagMap\\202\\010\\350\\303\\373\\305](\\002\\000\\001Z\\000\\023allowsTransientDataxr\\000\\035org.quartz.utils.DirtyFlagMap\\023\\346.\\255(v\\012\\316\\002\\000\\002Z\\000\\005dirtyL\\000\\003mapt\\000\\017Ljava/util/Map;xp\\001sr\\000\\021java.util.HashMap\\005\\007\\332\\301\\303\\026`\\321\\003\\000\\002F\\000\\012loadFactorI\\000\\011thresholdxp?@\\000\\000\\000\\000\\000\\014w\\010\\000\\000\\000\\020\\000\\000\\000\\001t\\000\\017TASK_PROPERTIESsr\\000\\036com.ruoyi.quartz.domain.SysJob\\000\\000\\000\\000\\000\\000\\000\\001\\002\\000\\010L\\000\\012concurrentt\\000\\022Ljava/lang/String;L\\000\\016cronExpressionq\\000~\\000\\011L\\000\\014invokeTargetq\\000~\\000\\011L\\000\\010jobGroupq\\000~\\000\\011L\\000\\005jobIdt\\000\\020Ljava/lang/Long;L\\000\\007jobNameq\\000~\\000\\011L\\000\\015misfirePolicyq\\000~\\000\\011L\\000\\006statusq\\000~\\000\\011xr\\000''com.ruoyi.common.core.domain.BaseEntity\\000\\000\\000\\000\\000\\000\\000\\001\\002\\000\\011L\\000\\011beginTimeq\\000~\\000\\011L\\000\\010createByq\\000~\\000\\011L\\000\\012createTimet\\000\\020Ljava/util/Date;L\\000\\007endTimeq\\000~\\000\\011L\\000\\006paramsq\\000~\\000\\003L\\000\\006remarkq\\000~\\000\\011L\\000\\013searchValueq\\000~\\000\\011L\\000\\010updateByq\\000~\\000\\011L\\000\\012updateTimeq\\000~\\000\\014xppt\\000\\005adminsr\\000\\016java.util.Datehj\\201\\001KYt\\031\\003\\000\\000xpw\\010\\000\\000\\001uN\\375J\\300xppt\\000\\000pppt\\000\\0011t\\000\\0160/15 * * * * ?t\\000\\025ryTask.ryParams(''ry'')t\\000\\007DEFAULTsr\\000\\016java.lang.Long;\\213\\344\\220\\314\\217#\\337\\002\\000\\001J\\000\\005valuexr\\000\\020java.lang.Number\\206\\254\\225\\035\\013\\224\\340\\213\\002\\000\\000xp\\000\\000\\000\\000\\000\\000\\000\\002t\\000\\030\\347\\263\\273\\347\\273\\237\\351\\273\\230\\350\\256\\244\\357\\274\\210\\346\\234\\211\\345\\217\\202\\357\\274\\211t\\000\\0013t\\000\\0011x\\000');
+INSERT INTO "public"."qrtz_job_details" VALUES ('RuoyiScheduler', 'TASK_CLASS_NAME3', 'DEFAULT', NULL, 'com.ruoyi.quartz.util.QuartzDisallowConcurrentExecution', '0', '1', '0', '0', E'\\254\\355\\000\\005sr\\000\\025org.quartz.JobDataMap\\237\\260\\203\\350\\277\\251\\260\\313\\002\\000\\000xr\\000&org.quartz.utils.StringKeyDirtyFlagMap\\202\\010\\350\\303\\373\\305](\\002\\000\\001Z\\000\\023allowsTransientDataxr\\000\\035org.quartz.utils.DirtyFlagMap\\023\\346.\\255(v\\012\\316\\002\\000\\002Z\\000\\005dirtyL\\000\\003mapt\\000\\017Ljava/util/Map;xp\\001sr\\000\\021java.util.HashMap\\005\\007\\332\\301\\303\\026`\\321\\003\\000\\002F\\000\\012loadFactorI\\000\\011thresholdxp?@\\000\\000\\000\\000\\000\\014w\\010\\000\\000\\000\\020\\000\\000\\000\\001t\\000\\017TASK_PROPERTIESsr\\000\\036com.ruoyi.quartz.domain.SysJob\\000\\000\\000\\000\\000\\000\\000\\001\\002\\000\\010L\\000\\012concurrentt\\000\\022Ljava/lang/String;L\\000\\016cronExpressionq\\000~\\000\\011L\\000\\014invokeTargetq\\000~\\000\\011L\\000\\010jobGroupq\\000~\\000\\011L\\000\\005jobIdt\\000\\020Ljava/lang/Long;L\\000\\007jobNameq\\000~\\000\\011L\\000\\015misfirePolicyq\\000~\\000\\011L\\000\\006statusq\\000~\\000\\011xr\\000''com.ruoyi.common.core.domain.BaseEntity\\000\\000\\000\\000\\000\\000\\000\\001\\002\\000\\011L\\000\\011beginTimeq\\000~\\000\\011L\\000\\010createByq\\000~\\000\\011L\\000\\012createTimet\\000\\020Ljava/util/Date;L\\000\\007endTimeq\\000~\\000\\011L\\000\\006paramsq\\000~\\000\\003L\\000\\006remarkq\\000~\\000\\011L\\000\\013searchValueq\\000~\\000\\011L\\000\\010updateByq\\000~\\000\\011L\\000\\012updateTimeq\\000~\\000\\014xppt\\000\\005adminsr\\000\\016java.util.Datehj\\201\\001KYt\\031\\003\\000\\000xpw\\010\\000\\000\\001uN\\375J\\300xppt\\000\\000pppt\\000\\0011t\\000\\0160/20 * * * * ?t\\0008ryTask.ryMultipleParams(''ry'', true, 2000L, 316.50D, 100)t\\000\\007DEFAULTsr\\000\\016java.lang.Long;\\213\\344\\220\\314\\217#\\337\\002\\000\\001J\\000\\005valuexr\\000\\020java.lang.Number\\206\\254\\225\\035\\013\\224\\340\\213\\002\\000\\000xp\\000\\000\\000\\000\\000\\000\\000\\003t\\000\\030\\347\\263\\273\\347\\273\\237\\351\\273\\230\\350\\256\\244\\357\\274\\210\\345\\244\\232\\345\\217\\202\\357\\274\\211t\\000\\0013t\\000\\0011x\\000');
+
+-- ----------------------------
+-- Table structure for qrtz_locks
+-- ----------------------------
+DROP TABLE IF EXISTS "public"."qrtz_locks";
+CREATE TABLE "public"."qrtz_locks" (
+  "sched_name" varchar(120) COLLATE "pg_catalog"."default" NOT NULL,
+  "lock_name" varchar(40) COLLATE "pg_catalog"."default" NOT NULL
+)
+;
+
+-- ----------------------------
+-- Records of qrtz_locks
+-- ----------------------------
+INSERT INTO "public"."qrtz_locks" VALUES ('RuoyiScheduler', 'STATE_ACCESS');
+INSERT INTO "public"."qrtz_locks" VALUES ('RuoyiScheduler', 'TRIGGER_ACCESS');
+
+-- ----------------------------
+-- Table structure for qrtz_paused_trigger_grps
+-- ----------------------------
+DROP TABLE IF EXISTS "public"."qrtz_paused_trigger_grps";
+CREATE TABLE "public"."qrtz_paused_trigger_grps" (
+  "sched_name" varchar(120) COLLATE "pg_catalog"."default" NOT NULL,
+  "trigger_group" varchar(200) COLLATE "pg_catalog"."default" NOT NULL
+)
+;
+
+-- ----------------------------
+-- Records of qrtz_paused_trigger_grps
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for qrtz_scheduler_state
+-- ----------------------------
+DROP TABLE IF EXISTS "public"."qrtz_scheduler_state";
+CREATE TABLE "public"."qrtz_scheduler_state" (
+  "sched_name" varchar(120) COLLATE "pg_catalog"."default" NOT NULL,
+  "instance_name" varchar(200) COLLATE "pg_catalog"."default" NOT NULL,
+  "last_checkin_time" int8 NOT NULL,
+  "checkin_interval" int8 NOT NULL
+)
+;
+
+-- ----------------------------
+-- Records of qrtz_scheduler_state
+-- ----------------------------
+INSERT INTO "public"."qrtz_scheduler_state" VALUES ('RuoyiScheduler', 'Lenovo-0061665558989865', 1665564726165, 15000);
+
+-- ----------------------------
+-- Table structure for qrtz_simple_triggers
+-- ----------------------------
+DROP TABLE IF EXISTS "public"."qrtz_simple_triggers";
+CREATE TABLE "public"."qrtz_simple_triggers" (
+  "sched_name" varchar(120) COLLATE "pg_catalog"."default" NOT NULL,
+  "trigger_name" varchar(200) COLLATE "pg_catalog"."default" NOT NULL,
+  "trigger_group" varchar(200) COLLATE "pg_catalog"."default" NOT NULL,
+  "repeat_count" int8 NOT NULL,
+  "repeat_interval" int8 NOT NULL,
+  "times_triggered" int8 NOT NULL
+)
+;
+
+-- ----------------------------
+-- Records of qrtz_simple_triggers
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for qrtz_simprop_triggers
+-- ----------------------------
+DROP TABLE IF EXISTS "public"."qrtz_simprop_triggers";
+CREATE TABLE "public"."qrtz_simprop_triggers" (
+  "sched_name" varchar(120) COLLATE "pg_catalog"."default" NOT NULL,
+  "trigger_name" varchar(200) COLLATE "pg_catalog"."default" NOT NULL,
+  "trigger_group" varchar(200) COLLATE "pg_catalog"."default" NOT NULL,
+  "str_prop_1" varchar(512) COLLATE "pg_catalog"."default",
+  "str_prop_2" varchar(512) COLLATE "pg_catalog"."default",
+  "str_prop_3" varchar(512) COLLATE "pg_catalog"."default",
+  "int_prop_1" int4,
+  "int_prop_2" int4,
+  "long_prop_1" int8,
+  "long_prop_2" int8,
+  "dec_prop_1" numeric(13,4),
+  "dec_prop_2" numeric(13,4),
+  "bool_prop_1" varchar(1) COLLATE "pg_catalog"."default",
+  "bool_prop_2" varchar(1) COLLATE "pg_catalog"."default"
+)
+;
+
+-- ----------------------------
+-- Records of qrtz_simprop_triggers
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for qrtz_triggers
+-- ----------------------------
+DROP TABLE IF EXISTS "public"."qrtz_triggers";
+CREATE TABLE "public"."qrtz_triggers" (
+  "sched_name" varchar(120) COLLATE "pg_catalog"."default" NOT NULL,
+  "trigger_name" varchar(200) COLLATE "pg_catalog"."default" NOT NULL,
+  "trigger_group" varchar(200) COLLATE "pg_catalog"."default" NOT NULL,
+  "job_name" varchar(200) COLLATE "pg_catalog"."default" NOT NULL,
+  "job_group" varchar(200) COLLATE "pg_catalog"."default" NOT NULL,
+  "description" varchar(250) COLLATE "pg_catalog"."default",
+  "next_fire_time" int8,
+  "prev_fire_time" int8,
+  "priority" int4,
+  "trigger_state" varchar(16) COLLATE "pg_catalog"."default" NOT NULL,
+  "trigger_type" varchar(8) COLLATE "pg_catalog"."default" NOT NULL,
+  "start_time" int8 NOT NULL,
+  "end_time" int8,
+  "calendar_name" varchar(200) COLLATE "pg_catalog"."default",
+  "misfire_instr" int2,
+  "job_data" bytea
+)
+;
+
+-- ----------------------------
+-- Records of qrtz_triggers
+-- ----------------------------
+INSERT INTO "public"."qrtz_triggers" VALUES ('RuoyiScheduler', 'TASK_CLASS_NAME1', 'DEFAULT', 'TASK_CLASS_NAME1', 'DEFAULT', NULL, 1665558990000, -1, 5, 'PAUSED', 'CRON', 1665558989000, 0, NULL, 2, NULL);
+INSERT INTO "public"."qrtz_triggers" VALUES ('RuoyiScheduler', 'TASK_CLASS_NAME2', 'DEFAULT', 'TASK_CLASS_NAME2', 'DEFAULT', NULL, 1665558990000, -1, 5, 'PAUSED', 'CRON', 1665558990000, 0, NULL, 2, NULL);
+INSERT INTO "public"."qrtz_triggers" VALUES ('RuoyiScheduler', 'TASK_CLASS_NAME3', 'DEFAULT', 'TASK_CLASS_NAME3', 'DEFAULT', NULL, 1665559000000, -1, 5, 'PAUSED', 'CRON', 1665558990000, 0, NULL, 2, NULL);
 
 -- ----------------------------
 -- Table structure for sys_config
@@ -889,6 +1112,15 @@ SELECT setval('"public"."sys_role_role_id_seq"', 102, true);
 ALTER SEQUENCE "public"."sys_user_user_id_seq"
 OWNED BY "public"."sys_user"."user_id";
 SELECT setval('"public"."sys_user_user_id_seq"', 106, true);
+
+-- ----------------------------
+-- Indexes structure for table qrtz_triggers
+-- ----------------------------
+CREATE INDEX "sched_name" ON "public"."qrtz_triggers" USING btree (
+  "sched_name" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST,
+  "job_name" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST,
+  "job_group" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
+);
 
 -- ----------------------------
 -- Primary Key structure for table sys_config

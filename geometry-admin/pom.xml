@@ -73,6 +73,24 @@
             <artifactId>geometry-generator</artifactId>
         </dependency>
 
+        <!-- 定时任务-->
+        <dependency>
+            <groupId>com.geominfo</groupId>
+            <artifactId>geometry-quartz</artifactId>
+        </dependency>
+
+        <!-- activiti模块-->
+        <dependency>
+            <groupId>com.geominfo</groupId>
+            <artifactId>geometry-activiti</artifactId>
+        </dependency>
+
+        <!-- workflow -->
+        <dependency>
+            <groupId>com.geominfo</groupId>
+            <artifactId>geometry-workflow</artifactId>
+        </dependency>
+
     </dependencies>
 
     <build>
