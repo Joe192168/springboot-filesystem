@@ -30,12 +30,12 @@ public class Constants
     /**
      * 通用成功标识
      */
-    public static final String SUCCESS = "200";
+    public static final String SUCCESS = "0";
 
     /**
      * 通用失败标识
      */
-    public static final String FAIL = "500";
+    public static final String FAIL = "1";
 
     /**
      * 登录成功

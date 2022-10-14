@@ -11,6 +11,6 @@ public class VerificationCodeExpireException extends UserException
 
     public VerificationCodeExpireException()
     {
-        super("user.verificationCode.expire", null);
+        super("user.jcaptcha.expire", null);
     }
 }

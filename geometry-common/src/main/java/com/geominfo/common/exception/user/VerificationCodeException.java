@@ -11,6 +11,6 @@ public class VerificationCodeException extends UserException
 
     public VerificationCodeException()
     {
-        super("user.verificationCode.error", null);
+        super("user.jcaptcha.error", null);
     }
 }
