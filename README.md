@@ -20,3 +20,6 @@ npm run build:stage
 
 # 构建生产环境
 npm run build:prod
+
+# 参考
+https://gitee.com/y_project/RuoYi-Vue.git

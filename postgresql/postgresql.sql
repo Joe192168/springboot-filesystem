@@ -12,9 +12,31 @@
  Target Server Version : 110006
  File Encoding         : 65001
 
- Date: 14/10/2022 10:12:25
+ Date: 14/10/2022 11:11:44
 */
 
+
+-- ----------------------------
+-- Sequence structure for gen_table_column_column_id_seq
+-- ----------------------------
+DROP SEQUENCE IF EXISTS "public"."gen_table_column_column_id_seq";
+CREATE SEQUENCE "public"."gen_table_column_column_id_seq" 
+INCREMENT 1
+MINVALUE  1
+MAXVALUE 9223372036854775807
+START 1
+CACHE 1;
+
+-- ----------------------------
+-- Sequence structure for gen_table_table_id_seq
+-- ----------------------------
+DROP SEQUENCE IF EXISTS "public"."gen_table_table_id_seq";
+CREATE SEQUENCE "public"."gen_table_table_id_seq" 
+INCREMENT 1
+MINVALUE  1
+MAXVALUE 9223372036854775807
+START 1
+CACHE 1;
 
 -- ----------------------------
 -- Sequence structure for sys_config_config_id_seq
@@ -158,6 +180,71 @@ MINVALUE  1
 MAXVALUE 9223372036854775807
 START 1
 CACHE 1;
+
+-- ----------------------------
+-- Table structure for gen_table
+-- ----------------------------
+DROP TABLE IF EXISTS "public"."gen_table";
+CREATE TABLE "public"."gen_table" (
+  "table_id" int8 NOT NULL DEFAULT nextval('gen_table_table_id_seq'::regclass),
+  "table_name" varchar(200) COLLATE "pg_catalog"."default",
+  "table_comment" varchar(500) COLLATE "pg_catalog"."default",
+  "class_name" varchar(100) COLLATE "pg_catalog"."default",
+  "tpl_category" varchar(200) COLLATE "pg_catalog"."default" DEFAULT 'crud'::character varying,
+  "package_name" varchar(100) COLLATE "pg_catalog"."default",
+  "module_name" varchar(30) COLLATE "pg_catalog"."default",
+  "business_name" varchar(30) COLLATE "pg_catalog"."default",
+  "function_name" varchar(50) COLLATE "pg_catalog"."default",
+  "function_author" varchar(50) COLLATE "pg_catalog"."default",
+  "gen_type" varchar(3) COLLATE "pg_catalog"."default" DEFAULT '0'::character varying,
+  "gen_path" varchar(200) COLLATE "pg_catalog"."default" DEFAULT '/'::character varying,
+  "options" varchar(1000) COLLATE "pg_catalog"."default",
+  "create_by" varchar(64) COLLATE "pg_catalog"."default",
+  "create_time" timestamp(0),
+  "update_by" varchar(64) COLLATE "pg_catalog"."default",
+  "update_time" timestamp(0),
+  "remark" varchar(500) COLLATE "pg_catalog"."default"
+)
+;
+
+-- ----------------------------
+-- Records of gen_table
+-- ----------------------------
+INSERT INTO "public"."gen_table" VALUES (5, 'act_workflow_formdata', '动态表单', 'ActWorkflowFormdata', 'crud', 'com.ruoyi.activiti', 'activiti', 'formdata', '动态单', 'danny', '0', '/', '{}', 'admin', '2020-11-02 10:28:53', '', '2020-11-02 10:29:39', NULL);
+
+-- ----------------------------
+-- Table structure for gen_table_column
+-- ----------------------------
+DROP TABLE IF EXISTS "public"."gen_table_column";
+CREATE TABLE "public"."gen_table_column" (
+  "column_id" int8 NOT NULL DEFAULT nextval('gen_table_column_column_id_seq'::regclass),
+  "table_id" varchar(64) COLLATE "pg_catalog"."default",
+  "column_name" varchar(200) COLLATE "pg_catalog"."default",
+  "column_comment" varchar(500) COLLATE "pg_catalog"."default",
+  "column_type" varchar(100) COLLATE "pg_catalog"."default",
+  "java_type" varchar(500) COLLATE "pg_catalog"."default",
+  "java_field" varchar(200) COLLATE "pg_catalog"."default",
+  "is_pk" varchar(3) COLLATE "pg_catalog"."default",
+  "is_increment" varchar(3) COLLATE "pg_catalog"."default",
+  "is_required" varchar(3) COLLATE "pg_catalog"."default",
+  "is_insert" varchar(3) COLLATE "pg_catalog"."default",
+  "is_edit" varchar(3) COLLATE "pg_catalog"."default",
+  "is_list" varchar(3) COLLATE "pg_catalog"."default",
+  "is_query" varchar(3) COLLATE "pg_catalog"."default",
+  "query_type" varchar(200) COLLATE "pg_catalog"."default" DEFAULT 'EQ'::character varying,
+  "html_type" varchar(200) COLLATE "pg_catalog"."default",
+  "dict_type" varchar(200) COLLATE "pg_catalog"."default",
+  "sort" int4,
+  "create_by" varchar(64) COLLATE "pg_catalog"."default",
+  "create_time" timestamp(0),
+  "update_by" varchar(64) COLLATE "pg_catalog"."default",
+  "update_time" timestamp(0)
+)
+;
+
+-- ----------------------------
+-- Records of gen_table_column
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for sys_config
@@ -697,6 +784,20 @@ INSERT INTO "public"."sys_user_role" VALUES (100, 2);
 INSERT INTO "public"."sys_user_role" VALUES (101, 100);
 INSERT INTO "public"."sys_user_role" VALUES (102, 100);
 INSERT INTO "public"."sys_user_role" VALUES (103, 100);
+
+-- ----------------------------
+-- Alter sequences owned by
+-- ----------------------------
+ALTER SEQUENCE "public"."gen_table_column_column_id_seq"
+OWNED BY "public"."gen_table_column"."column_id";
+SELECT setval('"public"."gen_table_column_column_id_seq"', 2, false);
+
+-- ----------------------------
+-- Alter sequences owned by
+-- ----------------------------
+ALTER SEQUENCE "public"."gen_table_table_id_seq"
+OWNED BY "public"."gen_table"."table_id";
+SELECT setval('"public"."gen_table_table_id_seq"', 7, true);
 
 -- ----------------------------
 -- Alter sequences owned by

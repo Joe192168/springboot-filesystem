@@ -36,6 +36,13 @@ public interface GenTableMapper
     public List<GenTable> selectDbTableListByNames(String[] tableNames);
 
     /**
+     * 查询据库表
+     * @param tableName
+     * @return 数据库表
+     */
+    public GenTable selectTableByName(String tableName);
+
+    /**
      * 查询表ID业务信息
      * 
      * @param id 业务ID
