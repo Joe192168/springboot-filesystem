@@ -2,12 +2,10 @@ package com.geominfo.common.enums;
 
 /**
  * 操作状态
- * 
- * @author xqh
  *
+ * @author xqh
  */
-public enum BusinessStatus
-{
+public enum BusinessStatus {
     /**
      * 成功
      */

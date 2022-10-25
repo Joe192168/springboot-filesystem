@@ -24,7 +24,6 @@ public class NginxConfig {
     }
 
 
-
     public void setPath(String path) {
         NginxConfig.path = path;
     }

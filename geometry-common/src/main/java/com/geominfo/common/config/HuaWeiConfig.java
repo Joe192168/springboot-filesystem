@@ -56,9 +56,10 @@ public class HuaWeiConfig {
     private static ObsClient getObsClient() {
         return new ObsClient(ak, sk, endPoint);
     }
+
     public static String saveHuaWeiOBS(String baseDir, String fileName, MultipartFile file) throws IOException {
         ObsClient obsClient = getObsClient();
-        PutObjectResult putObjectResult = obsClient.putObject(bucketName, baseDir+"/"+fileName, file.getInputStream());
-        return url+"/"+putObjectResult.getObjectKey();
+        PutObjectResult putObjectResult = obsClient.putObject(bucketName, baseDir + "/" + fileName, file.getInputStream());
+        return url + "/" + putObjectResult.getObjectKey();
     }
 }

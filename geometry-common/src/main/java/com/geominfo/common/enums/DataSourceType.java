@@ -2,11 +2,10 @@ package com.geominfo.common.enums;
 
 /**
  * 数据源
- * 
+ *
  * @author xqh
  */
-public enum DataSourceType
-{
+public enum DataSourceType {
     /**
      * 主库
      */

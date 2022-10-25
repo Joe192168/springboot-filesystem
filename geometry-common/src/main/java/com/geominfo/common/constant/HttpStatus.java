@@ -2,11 +2,10 @@ package com.geominfo.common.constant;
 
 /**
  * 返回状态码
- * 
+ *
  * @author xqh
  */
-public class HttpStatus
-{
+public class HttpStatus {
     /**
      * 操作成功
      */

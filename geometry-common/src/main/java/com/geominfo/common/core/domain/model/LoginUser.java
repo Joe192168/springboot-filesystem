@@ -76,7 +76,7 @@ public class LoginUser implements UserDetails {
     public LoginUser() {
     }
 
-    public LoginUser(SysUser user, Set<String> permissions,List<SimpleGrantedAuthority> authorities) {
+    public LoginUser(SysUser user, Set<String> permissions, List<SimpleGrantedAuthority> authorities) {
         this.user = user;
         this.permissions = permissions;
         this.authorities = authorities;

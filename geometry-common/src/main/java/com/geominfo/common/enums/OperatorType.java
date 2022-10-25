@@ -2,11 +2,10 @@ package com.geominfo.common.enums;
 
 /**
  * 操作人类别
- * 
+ *
  * @author xqh
  */
-public enum OperatorType
-{
+public enum OperatorType {
     /**
      * 其它
      */
