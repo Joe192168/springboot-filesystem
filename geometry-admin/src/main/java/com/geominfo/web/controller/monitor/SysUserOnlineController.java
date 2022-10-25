@@ -11,14 +11,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.geominfo.common.annotation.Log;
 import com.geominfo.common.constant.Constants;
 import com.geominfo.common.core.controller.BaseController;
 import com.geominfo.common.core.domain.AjaxResult;
 import com.geominfo.common.core.domain.model.LoginUser;
 import com.geominfo.common.core.page.TableDataInfo;
 import com.geominfo.common.core.redis.RedisCache;
-import com.geominfo.common.enums.BusinessType;
 import com.geominfo.common.utils.StringUtils;
 import com.geominfo.system.domain.SysUserOnline;
 import com.geominfo.system.service.ISysUserOnlineService;
@@ -82,7 +80,6 @@ public class SysUserOnlineController extends BaseController
      * 强退用户
      */
     @PreAuthorize("@ss.hasPermi('monitor:online:forceLogout')")
-    @Log(title = "在线用户", businessType = BusinessType.FORCE)
     @DeleteMapping("/{tokenId}")
     public AjaxResult forceLogout(@PathVariable String tokenId)
     {

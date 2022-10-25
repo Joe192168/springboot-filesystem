@@ -1,12 +1,10 @@
 package com.geominfo.web.controller.system;
 
-import com.geominfo.common.annotation.Log;
 import com.geominfo.common.constant.UserConstants;
 import com.geominfo.common.core.controller.BaseController;
 import com.geominfo.common.core.domain.AjaxResult;
 import com.geominfo.common.core.domain.entity.SysDictType;
 import com.geominfo.common.core.page.TableDataInfo;
-import com.geominfo.common.enums.BusinessType;
 import com.geominfo.common.utils.SecurityUtils;
 import com.geominfo.common.utils.poi.ExcelUtil;
 import com.geominfo.system.service.ISysDictTypeService;
@@ -38,7 +36,6 @@ public class SysDictTypeController extends BaseController
         return getDataTable(list);
     }
 
-    @Log(title = "字典类型", businessType = BusinessType.EXPORT)
     @PreAuthorize("@ss.hasPermi('system:dict:export')")
     @GetMapping("/export")
     public AjaxResult export(SysDictType dictType)
@@ -62,7 +59,6 @@ public class SysDictTypeController extends BaseController
      * 新增字典类型
      */
     @PreAuthorize("@ss.hasPermi('system:dict:add')")
-    @Log(title = "字典类型", businessType = BusinessType.INSERT)
     @PostMapping
     public AjaxResult add(@Validated @RequestBody SysDictType dict)
     {
@@ -78,7 +74,6 @@ public class SysDictTypeController extends BaseController
      * 修改字典类型
      */
     @PreAuthorize("@ss.hasPermi('system:dict:edit')")
-    @Log(title = "字典类型", businessType = BusinessType.UPDATE)
     @PutMapping
     public AjaxResult edit(@Validated @RequestBody SysDictType dict)
     {
@@ -94,7 +89,6 @@ public class SysDictTypeController extends BaseController
      * 删除字典类型
      */
     @PreAuthorize("@ss.hasPermi('system:dict:remove')")
-    @Log(title = "字典类型", businessType = BusinessType.DELETE)
     @DeleteMapping("/{dictIds}")
     public AjaxResult remove(@PathVariable Long[] dictIds)
     {
@@ -105,7 +99,6 @@ public class SysDictTypeController extends BaseController
      * 清空缓存
      */
     @PreAuthorize("@ss.hasPermi('system:dict:remove')")
-    @Log(title = "字典类型", businessType = BusinessType.CLEAN)
     @DeleteMapping("/clearCache")
     public AjaxResult clearCache()
     {

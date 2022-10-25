@@ -1,11 +1,9 @@
 package com.geominfo.web.controller.system;
 
-import com.geominfo.common.annotation.Log;
 import com.geominfo.common.constant.UserConstants;
 import com.geominfo.common.core.controller.BaseController;
 import com.geominfo.common.core.domain.AjaxResult;
 import com.geominfo.common.core.page.TableDataInfo;
-import com.geominfo.common.enums.BusinessType;
 import com.geominfo.common.utils.SecurityUtils;
 import com.geominfo.common.utils.poi.ExcelUtil;
 import com.geominfo.system.domain.SysPost;
@@ -42,7 +40,6 @@ public class SysPostController extends BaseController
         return getDataTable(list);
     }
     
-    @Log(title = "岗位管理", businessType = BusinessType.EXPORT)
     @PreAuthorize("@ss.hasPermi('system:post:export')")
     @GetMapping("/export")
     public AjaxResult export(SysPost post)
@@ -66,7 +63,6 @@ public class SysPostController extends BaseController
      * 新增岗位
      */
     @PreAuthorize("@ss.hasPermi('system:post:add')")
-    @Log(title = "岗位管理", businessType = BusinessType.INSERT)
     @PostMapping
     public AjaxResult add(@Validated @RequestBody SysPost post)
     {
@@ -86,7 +82,6 @@ public class SysPostController extends BaseController
      * 修改岗位
      */
     @PreAuthorize("@ss.hasPermi('system:post:edit')")
-    @Log(title = "岗位管理", businessType = BusinessType.UPDATE)
     @PutMapping
     public AjaxResult edit(@Validated @RequestBody SysPost post)
     {
@@ -107,7 +102,6 @@ public class SysPostController extends BaseController
      * 删除岗位
      */
     @PreAuthorize("@ss.hasPermi('system:post:remove')")
-    @Log(title = "岗位管理", businessType = BusinessType.DELETE)
     @DeleteMapping("/{postIds}")
     public AjaxResult remove(@PathVariable Long[] postIds)
     {

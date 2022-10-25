@@ -12,11 +12,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.geominfo.common.annotation.Log;
 import com.geominfo.common.core.controller.BaseController;
 import com.geominfo.common.core.domain.AjaxResult;
 import com.geominfo.common.core.page.TableDataInfo;
-import com.geominfo.common.enums.BusinessType;
 import com.geominfo.common.exception.job.TaskException;
 import com.geominfo.common.utils.SecurityUtils;
 import com.geominfo.common.utils.poi.ExcelUtil;
@@ -52,7 +50,6 @@ public class SysJobController extends BaseController
      * 导出定时任务列表
      */
     @PreAuthorize("@ss.hasPermi('monitor:job:export')")
-    @Log(title = "定时任务", businessType = BusinessType.EXPORT)
     @GetMapping("/export")
     public AjaxResult export(SysJob sysJob)
     {
@@ -75,7 +72,6 @@ public class SysJobController extends BaseController
      * 新增定时任务
      */
     @PreAuthorize("@ss.hasPermi('monitor:job:add')")
-    @Log(title = "定时任务", businessType = BusinessType.INSERT)
     @PostMapping
     public AjaxResult add(@RequestBody SysJob sysJob) throws SchedulerException, TaskException
     {
@@ -91,7 +87,6 @@ public class SysJobController extends BaseController
      * 修改定时任务
      */
     @PreAuthorize("@ss.hasPermi('monitor:job:edit')")
-    @Log(title = "定时任务", businessType = BusinessType.UPDATE)
     @PutMapping
     public AjaxResult edit(@RequestBody SysJob sysJob) throws SchedulerException, TaskException
     {
@@ -107,7 +102,6 @@ public class SysJobController extends BaseController
      * 定时任务状态修改
      */
     @PreAuthorize("@ss.hasPermi('monitor:job:changeStatus')")
-    @Log(title = "定时任务", businessType = BusinessType.UPDATE)
     @PutMapping("/changeStatus")
     public AjaxResult changeStatus(@RequestBody SysJob job) throws SchedulerException
     {
@@ -120,7 +114,6 @@ public class SysJobController extends BaseController
      * 定时任务立即执行一次
      */
     @PreAuthorize("@ss.hasPermi('monitor:job:changeStatus')")
-    @Log(title = "定时任务", businessType = BusinessType.UPDATE)
     @PutMapping("/run")
     public AjaxResult run(@RequestBody SysJob job) throws SchedulerException
     {
@@ -132,7 +125,6 @@ public class SysJobController extends BaseController
      * 删除定时任务
      */
     @PreAuthorize("@ss.hasPermi('monitor:job:remove')")
-    @Log(title = "定时任务", businessType = BusinessType.DELETE)
     @DeleteMapping("/{jobIds}")
     public AjaxResult remove(@PathVariable Long[] jobIds) throws SchedulerException, TaskException
     {

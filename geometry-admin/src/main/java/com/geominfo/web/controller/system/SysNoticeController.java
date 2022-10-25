@@ -1,10 +1,8 @@
 package com.geominfo.web.controller.system;
 
-import com.geominfo.common.annotation.Log;
 import com.geominfo.common.core.controller.BaseController;
 import com.geominfo.common.core.domain.AjaxResult;
 import com.geominfo.common.core.page.TableDataInfo;
-import com.geominfo.common.enums.BusinessType;
 import com.geominfo.common.utils.SecurityUtils;
 import com.geominfo.system.domain.SysNotice;
 import com.geominfo.system.service.ISysNoticeService;
@@ -54,7 +52,6 @@ public class SysNoticeController extends BaseController
      * 新增通知公告
      */
     @PreAuthorize("@ss.hasPermi('system:notice:add')")
-    @Log(title = "通知公告", businessType = BusinessType.INSERT)
     @PostMapping
     public AjaxResult add(@Validated @RequestBody SysNotice notice)
     {
@@ -67,7 +64,6 @@ public class SysNoticeController extends BaseController
      * 修改通知公告
      */
     @PreAuthorize("@ss.hasPermi('system:notice:edit')")
-    @Log(title = "通知公告", businessType = BusinessType.UPDATE)
     @PutMapping
     public AjaxResult edit(@Validated @RequestBody SysNotice notice)
     {
@@ -80,7 +76,6 @@ public class SysNoticeController extends BaseController
      * 删除通知公告
      */
     @PreAuthorize("@ss.hasPermi('system:notice:remove')")
-    @Log(title = "通知公告", businessType = BusinessType.DELETE)
     @DeleteMapping("/{noticeIds}")
     public AjaxResult remove(@PathVariable Long[] noticeIds)
     {

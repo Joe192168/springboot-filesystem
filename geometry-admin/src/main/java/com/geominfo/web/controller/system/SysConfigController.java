@@ -1,12 +1,10 @@
 package com.geominfo.web.controller.system;
 
-import com.geominfo.common.annotation.Log;
 import com.geominfo.common.annotation.RepeatSubmit;
 import com.geominfo.common.constant.UserConstants;
 import com.geominfo.common.core.controller.BaseController;
 import com.geominfo.common.core.domain.AjaxResult;
 import com.geominfo.common.core.page.TableDataInfo;
-import com.geominfo.common.enums.BusinessType;
 import com.geominfo.common.utils.SecurityUtils;
 import com.geominfo.common.utils.poi.ExcelUtil;
 import com.geominfo.system.domain.SysConfig;
@@ -42,7 +40,6 @@ public class SysConfigController extends BaseController
         return getDataTable(list);
     }
 
-    @Log(title = "参数管理", businessType = BusinessType.EXPORT)
     @PreAuthorize("@ss.hasPermi('system:config:export')")
     @GetMapping("/export")
     public AjaxResult export(SysConfig config)
@@ -75,7 +72,6 @@ public class SysConfigController extends BaseController
      * 新增参数配置
      */
     @PreAuthorize("@ss.hasPermi('system:config:add')")
-    @Log(title = "参数管理", businessType = BusinessType.INSERT)
     @PostMapping
     @RepeatSubmit
     public AjaxResult add(@Validated @RequestBody SysConfig config)
@@ -92,7 +88,6 @@ public class SysConfigController extends BaseController
      * 修改参数配置
      */
     @PreAuthorize("@ss.hasPermi('system:config:edit')")
-    @Log(title = "参数管理", businessType = BusinessType.UPDATE)
     @PutMapping
     public AjaxResult edit(@Validated @RequestBody SysConfig config)
     {
@@ -108,7 +103,6 @@ public class SysConfigController extends BaseController
      * 删除参数配置
      */
     @PreAuthorize("@ss.hasPermi('system:config:remove')")
-    @Log(title = "参数管理", businessType = BusinessType.DELETE)
     @DeleteMapping("/{configIds}")
     public AjaxResult remove(@PathVariable Long[] configIds)
     {
@@ -119,7 +113,6 @@ public class SysConfigController extends BaseController
      * 清空缓存
      */
     @PreAuthorize("@ss.hasPermi('system:config:remove')")
-    @Log(title = "参数管理", businessType = BusinessType.CLEAN)
     @DeleteMapping("/clearCache")
     public AjaxResult clearCache()
     {

@@ -14,10 +14,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.geominfo.common.annotation.Log;
 import com.geominfo.common.core.controller.BaseController;
 import com.geominfo.common.core.domain.AjaxResult;
-import com.geominfo.common.enums.BusinessType;
 import com.geominfo.leave.domain.WorkflowLeave;
 import com.geominfo.leave.service.IWorkflowLeaveService;
 import com.geominfo.common.utils.poi.ExcelUtil;
@@ -58,7 +56,6 @@ public class WorkflowLeaveController extends BaseController {
      * 导出请假列表
      */
     @PreAuthorize("@ss.hasPermi('workflow:leave:export')")
-    @Log(title = "请假", businessType = BusinessType.EXPORT)
     @GetMapping("/export")
     public AjaxResult export(WorkflowLeave workflowLeave) {
         List<WorkflowLeave> list = workflowLeaveService.selectWorkflowLeaveList(workflowLeave);
@@ -86,7 +83,6 @@ public class WorkflowLeaveController extends BaseController {
      * 新增请假
      */
     @PreAuthorize("@ss.hasPermi('workflow:leave:add')")
-    @Log(title = "请假", businessType = BusinessType.INSERT)
     @PostMapping
     public AjaxResult add(@RequestBody WorkflowLeave workflowLeave) {
         return toAjax(workflowLeaveService.insertWorkflowLeave(workflowLeave));
@@ -96,7 +92,6 @@ public class WorkflowLeaveController extends BaseController {
      * 修改请假
      */
     @PreAuthorize("@ss.hasPermi('workflow:leave:edit')")
-    @Log(title = "请假", businessType = BusinessType.UPDATE)
     @PutMapping
     public AjaxResult edit(@RequestBody WorkflowLeave workflowLeave) {
         return toAjax(workflowLeaveService.insertWorkflowLeave(workflowLeave));
@@ -106,7 +101,6 @@ public class WorkflowLeaveController extends BaseController {
      * 删除请假
      */
     @PreAuthorize("@ss.hasPermi('workflow:leave:remove')")
-    @Log(title = "请假", businessType = BusinessType.DELETE)
     @DeleteMapping("/{ids}")
     public AjaxResult remove(@PathVariable String[] ids) {
         return toAjax(workflowLeaveService.deleteWorkflowLeaveByIds(ids));

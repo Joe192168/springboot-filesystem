@@ -2,13 +2,11 @@ package com.geominfo.activiti.controller;
 
 import com.geominfo.activiti.domain.dto.ProcessDefinitionDTO;
 import com.geominfo.activiti.service.IProcessDefinitionService;
-import com.geominfo.common.annotation.Log;
 import com.geominfo.common.core.controller.BaseController;
 import com.geominfo.common.core.domain.AjaxResult;
 import com.geominfo.common.core.page.PageDomain;
 import com.geominfo.common.core.page.TableDataInfo;
 import com.geominfo.common.core.page.TableSupport;
-import com.geominfo.common.enums.BusinessType;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -51,7 +49,6 @@ public class ProcessDefinitionController extends BaseController {
      * @param deploymentId
      * @return
      */
-    @Log(title = "流程定义管理", businessType = BusinessType.DELETE)
     @DeleteMapping(value = "/remove/{deploymentId}")
     public AjaxResult delDefinition(@PathVariable("deploymentId") String deploymentId) {
         return toAjax(processDefinitionService.deleteProcessDefinitionById(deploymentId));
@@ -64,7 +61,6 @@ public class ProcessDefinitionController extends BaseController {
      * @return
      * @throws IOException
      */
-    @Log(title = "流程定义管理", businessType = BusinessType.IMPORT)
     @PostMapping(value = "/uploadStreamAndDeployment")
     public AjaxResult uploadStreamAndDeployment(@RequestParam("file") MultipartFile file) throws IOException {
         processDefinitionService.uploadStreamAndDeployment(file);
@@ -78,7 +74,6 @@ public class ProcessDefinitionController extends BaseController {
      * @param processDefinition
      * @return
      */
-    @Log(title = "流程定义管理", businessType = BusinessType.UPDATE)
     @PostMapping("/suspendOrActiveApply")
     @ResponseBody
     public AjaxResult suspendOrActiveApply(@RequestBody ProcessDefinitionDTO processDefinition) {
@@ -93,7 +88,6 @@ public class ProcessDefinitionController extends BaseController {
      * @return
      * @throws IOException
      */
-    @Log(title = "流程定义管理", businessType = BusinessType.IMPORT)
     @PostMapping(value = "/upload")
     public AjaxResult upload(@RequestParam("processFile") MultipartFile multipartFile) throws IOException {
 
