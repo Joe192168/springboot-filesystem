@@ -16,13 +16,12 @@ import java.util.List;
 
 /**
  * 公告 信息操作处理
- * 
+ *
  * @author xqh
  */
 @RestController
 @RequestMapping("/system/notice")
-public class SysNoticeController extends BaseController
-{
+public class SysNoticeController extends BaseController {
     @Autowired
     private ISysNoticeService noticeService;
 
@@ -31,8 +30,7 @@ public class SysNoticeController extends BaseController
      */
     @PreAuthorize("@ss.hasPermi('system:notice:list')")
     @GetMapping("/list")
-    public TableDataInfo list(SysNotice notice)
-    {
+    public TableDataInfo list(SysNotice notice) {
         startPage();
         List<SysNotice> list = noticeService.selectNoticeList(notice);
         return getDataTable(list);
@@ -43,8 +41,7 @@ public class SysNoticeController extends BaseController
      */
     @PreAuthorize("@ss.hasPermi('system:notice:query')")
     @GetMapping(value = "/{noticeId}")
-    public AjaxResult getInfo(@PathVariable Long noticeId)
-    {
+    public AjaxResult getInfo(@PathVariable Long noticeId) {
         return AjaxResult.success(noticeService.selectNoticeById(noticeId));
     }
 
@@ -53,8 +50,7 @@ public class SysNoticeController extends BaseController
      */
     @PreAuthorize("@ss.hasPermi('system:notice:add')")
     @PostMapping
-    public AjaxResult add(@Validated @RequestBody SysNotice notice)
-    {
+    public AjaxResult add(@Validated @RequestBody SysNotice notice) {
         notice.setCreateBy(SecurityUtils.getUsername());
         notice.setCreateTime(new Date());
         return toAjax(noticeService.insertNotice(notice));
@@ -65,8 +61,7 @@ public class SysNoticeController extends BaseController
      */
     @PreAuthorize("@ss.hasPermi('system:notice:edit')")
     @PutMapping
-    public AjaxResult edit(@Validated @RequestBody SysNotice notice)
-    {
+    public AjaxResult edit(@Validated @RequestBody SysNotice notice) {
         notice.setUpdateBy(SecurityUtils.getUsername());
         notice.setUpdateTime(new Date());
         return toAjax(noticeService.updateNotice(notice));
@@ -77,8 +72,7 @@ public class SysNoticeController extends BaseController
      */
     @PreAuthorize("@ss.hasPermi('system:notice:remove')")
     @DeleteMapping("/{noticeIds}")
-    public AjaxResult remove(@PathVariable Long[] noticeIds)
-    {
+    public AjaxResult remove(@PathVariable Long[] noticeIds) {
         return toAjax(noticeService.deleteNoticeByIds(noticeIds));
     }
 }
