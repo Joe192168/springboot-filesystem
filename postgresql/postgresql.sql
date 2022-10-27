@@ -474,18 +474,29 @@ INSERT INTO "public"."qrtz_triggers" VALUES ('RuoyiScheduler', 'TASK_CLASS_NAME3
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."sys_config";
 CREATE TABLE "public"."sys_config" (
-  "config_id" int4 NOT NULL DEFAULT nextval('sys_config_config_id_seq'::regclass),
-  "config_name" varchar(100) COLLATE "pg_catalog"."default",
-  "config_key" varchar(100) COLLATE "pg_catalog"."default",
-  "config_value" varchar(500) COLLATE "pg_catalog"."default",
-  "config_type" varchar(3) COLLATE "pg_catalog"."default" DEFAULT 'N'::character varying,
-  "create_by" varchar(64) COLLATE "pg_catalog"."default",
-  "create_time" timestamp(0),
-  "update_by" varchar(64) COLLATE "pg_catalog"."default",
-  "update_time" timestamp(0),
-  "remark" varchar(500) COLLATE "pg_catalog"."default"
+                                       "config_id" int4 NOT NULL DEFAULT nextval('sys_config_config_id_seq'::regclass),
+                                       "config_name" varchar(100) COLLATE "pg_catalog"."default",
+                                       "config_key" varchar(100) COLLATE "pg_catalog"."default",
+                                       "config_value" varchar(500) COLLATE "pg_catalog"."default",
+                                       "config_type" varchar(3) COLLATE "pg_catalog"."default" DEFAULT 'N'::character varying,
+                                       "create_by" varchar(64) COLLATE "pg_catalog"."default",
+                                       "create_time" timestamp(0),
+                                       "update_by" varchar(64) COLLATE "pg_catalog"."default",
+                                       "update_time" timestamp(0),
+                                       "remark" varchar(500) COLLATE "pg_catalog"."default"
 )
 ;
+COMMENT ON COLUMN "public"."sys_config"."config_id" IS '参数主键';
+COMMENT ON COLUMN "public"."sys_config"."config_name" IS '参数名称';
+COMMENT ON COLUMN "public"."sys_config"."config_key" IS '参数键名';
+COMMENT ON COLUMN "public"."sys_config"."config_value" IS '参数键值';
+COMMENT ON COLUMN "public"."sys_config"."config_type" IS '系统内置（Y是 N否）';
+COMMENT ON COLUMN "public"."sys_config"."create_by" IS '创建者';
+COMMENT ON COLUMN "public"."sys_config"."create_time" IS '创建时间';
+COMMENT ON COLUMN "public"."sys_config"."update_by" IS '更新者';
+COMMENT ON COLUMN "public"."sys_config"."update_time" IS '更新时间';
+COMMENT ON COLUMN "public"."sys_config"."remark" IS '备注';
+COMMENT ON TABLE "public"."sys_config" IS '参数配置表';
 
 -- ----------------------------
 -- Records of sys_config
@@ -499,22 +510,37 @@ INSERT INTO "public"."sys_config" VALUES (3, '主框架页-侧边栏主题', 'sy
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."sys_dept";
 CREATE TABLE "public"."sys_dept" (
-  "dept_id" int8 NOT NULL DEFAULT nextval('sys_dept_dept_id_seq'::regclass),
-  "parent_id" int8 DEFAULT 0,
-  "ancestors" varchar(50) COLLATE "pg_catalog"."default",
-  "dept_name" varchar(30) COLLATE "pg_catalog"."default",
-  "order_num" int4 DEFAULT 0,
-  "leader" varchar(20) COLLATE "pg_catalog"."default",
-  "phone" varchar(11) COLLATE "pg_catalog"."default",
-  "email" varchar(50) COLLATE "pg_catalog"."default",
-  "status" varchar(3) COLLATE "pg_catalog"."default" DEFAULT '0'::character varying,
-  "del_flag" varchar(3) COLLATE "pg_catalog"."default" DEFAULT '0'::character varying,
-  "create_by" varchar(64) COLLATE "pg_catalog"."default",
-  "create_time" timestamp(0),
-  "update_by" varchar(64) COLLATE "pg_catalog"."default",
-  "update_time" timestamp(0)
+                                     "dept_id" int8 NOT NULL DEFAULT nextval('sys_dept_dept_id_seq'::regclass),
+                                     "parent_id" int8 DEFAULT 0,
+                                     "ancestors" varchar(50) COLLATE "pg_catalog"."default",
+                                     "dept_name" varchar(30) COLLATE "pg_catalog"."default",
+                                     "order_num" int4 DEFAULT 0,
+                                     "leader" varchar(20) COLLATE "pg_catalog"."default",
+                                     "phone" varchar(11) COLLATE "pg_catalog"."default",
+                                     "email" varchar(50) COLLATE "pg_catalog"."default",
+                                     "status" varchar(3) COLLATE "pg_catalog"."default" DEFAULT '0'::character varying,
+                                     "del_flag" varchar(3) COLLATE "pg_catalog"."default" DEFAULT '0'::character varying,
+                                     "create_by" varchar(64) COLLATE "pg_catalog"."default",
+                                     "create_time" timestamp(0),
+                                     "update_by" varchar(64) COLLATE "pg_catalog"."default",
+                                     "update_time" timestamp(0)
 )
 ;
+COMMENT ON COLUMN "public"."sys_dept"."dept_id" IS '部门id';
+COMMENT ON COLUMN "public"."sys_dept"."parent_id" IS '父部门id';
+COMMENT ON COLUMN "public"."sys_dept"."ancestors" IS '祖级列表';
+COMMENT ON COLUMN "public"."sys_dept"."dept_name" IS '部门名称';
+COMMENT ON COLUMN "public"."sys_dept"."order_num" IS '显示顺序';
+COMMENT ON COLUMN "public"."sys_dept"."leader" IS '负责人';
+COMMENT ON COLUMN "public"."sys_dept"."phone" IS '联系电话';
+COMMENT ON COLUMN "public"."sys_dept"."email" IS '邮箱';
+COMMENT ON COLUMN "public"."sys_dept"."status" IS '部门状态（0正常 1停用）';
+COMMENT ON COLUMN "public"."sys_dept"."del_flag" IS '删除标志（0代表存在 2代表删除）';
+COMMENT ON COLUMN "public"."sys_dept"."create_by" IS '创建者';
+COMMENT ON COLUMN "public"."sys_dept"."create_time" IS '创建时间';
+COMMENT ON COLUMN "public"."sys_dept"."update_by" IS '更新者';
+COMMENT ON COLUMN "public"."sys_dept"."update_time" IS '更新时间';
+COMMENT ON TABLE "public"."sys_dept" IS '部门表';
 
 -- ----------------------------
 -- Records of sys_dept
@@ -535,22 +561,37 @@ INSERT INTO "public"."sys_dept" VALUES (109, 102, '0,100,102', '财务部门', 2
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."sys_dict_data";
 CREATE TABLE "public"."sys_dict_data" (
-  "dict_code" int8 NOT NULL DEFAULT nextval('sys_dict_data_dict_code_seq'::regclass),
-  "dict_sort" int4 DEFAULT 0,
-  "dict_label" varchar(100) COLLATE "pg_catalog"."default",
-  "dict_value" varchar(100) COLLATE "pg_catalog"."default",
-  "dict_type" varchar(100) COLLATE "pg_catalog"."default",
-  "css_class" varchar(100) COLLATE "pg_catalog"."default",
-  "list_class" varchar(100) COLLATE "pg_catalog"."default",
-  "is_default" varchar(3) COLLATE "pg_catalog"."default" DEFAULT 'N'::character varying,
-  "status" varchar(3) COLLATE "pg_catalog"."default" DEFAULT '0'::character varying,
-  "create_by" varchar(64) COLLATE "pg_catalog"."default",
-  "create_time" timestamp(0),
-  "update_by" varchar(64) COLLATE "pg_catalog"."default",
-  "update_time" timestamp(0),
-  "remark" varchar(500) COLLATE "pg_catalog"."default"
+                                          "dict_code" int8 NOT NULL DEFAULT nextval('sys_dict_data_dict_code_seq'::regclass),
+                                          "dict_sort" int4 DEFAULT 0,
+                                          "dict_label" varchar(100) COLLATE "pg_catalog"."default",
+                                          "dict_value" varchar(100) COLLATE "pg_catalog"."default",
+                                          "dict_type" varchar(100) COLLATE "pg_catalog"."default",
+                                          "css_class" varchar(100) COLLATE "pg_catalog"."default",
+                                          "list_class" varchar(100) COLLATE "pg_catalog"."default",
+                                          "is_default" varchar(3) COLLATE "pg_catalog"."default" DEFAULT 'N'::character varying,
+                                          "status" varchar(3) COLLATE "pg_catalog"."default" DEFAULT '0'::character varying,
+                                          "create_by" varchar(64) COLLATE "pg_catalog"."default",
+                                          "create_time" timestamp(0),
+                                          "update_by" varchar(64) COLLATE "pg_catalog"."default",
+                                          "update_time" timestamp(0),
+                                          "remark" varchar(500) COLLATE "pg_catalog"."default"
 )
 ;
+COMMENT ON COLUMN "public"."sys_dict_data"."dict_code" IS '字典编码';
+COMMENT ON COLUMN "public"."sys_dict_data"."dict_sort" IS '字典排序';
+COMMENT ON COLUMN "public"."sys_dict_data"."dict_label" IS '字典标签';
+COMMENT ON COLUMN "public"."sys_dict_data"."dict_value" IS '字典键值';
+COMMENT ON COLUMN "public"."sys_dict_data"."dict_type" IS '字典类型';
+COMMENT ON COLUMN "public"."sys_dict_data"."css_class" IS '样式属性（其他样式扩展）';
+COMMENT ON COLUMN "public"."sys_dict_data"."list_class" IS '表格回显样式';
+COMMENT ON COLUMN "public"."sys_dict_data"."is_default" IS '是否默认（Y是 N否）';
+COMMENT ON COLUMN "public"."sys_dict_data"."status" IS '状态（0正常 1停用）';
+COMMENT ON COLUMN "public"."sys_dict_data"."create_by" IS '创建者';
+COMMENT ON COLUMN "public"."sys_dict_data"."create_time" IS '创建时间';
+COMMENT ON COLUMN "public"."sys_dict_data"."update_by" IS '更新者';
+COMMENT ON COLUMN "public"."sys_dict_data"."update_time" IS '更新时间';
+COMMENT ON COLUMN "public"."sys_dict_data"."remark" IS '备注';
+COMMENT ON TABLE "public"."sys_dict_data" IS '字典数据表';
 
 -- ----------------------------
 -- Records of sys_dict_data
@@ -595,17 +636,27 @@ INSERT INTO "public"."sys_dict_data" VALUES (105, 3, '事假', '事假', 'activi
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."sys_dict_type";
 CREATE TABLE "public"."sys_dict_type" (
-  "dict_id" int8 NOT NULL DEFAULT nextval('sys_dict_type_dict_id_seq'::regclass),
-  "dict_name" varchar(100) COLLATE "pg_catalog"."default",
-  "dict_type" varchar(100) COLLATE "pg_catalog"."default",
-  "status" varchar(3) COLLATE "pg_catalog"."default" DEFAULT '0'::character varying,
-  "create_by" varchar(64) COLLATE "pg_catalog"."default",
-  "create_time" timestamp(0),
-  "update_by" varchar(64) COLLATE "pg_catalog"."default",
-  "update_time" timestamp(0),
-  "remark" varchar(500) COLLATE "pg_catalog"."default"
+                                          "dict_id" int8 NOT NULL DEFAULT nextval('sys_dict_type_dict_id_seq'::regclass),
+                                          "dict_name" varchar(100) COLLATE "pg_catalog"."default",
+                                          "dict_type" varchar(100) COLLATE "pg_catalog"."default",
+                                          "status" varchar(3) COLLATE "pg_catalog"."default" DEFAULT '0'::character varying,
+                                          "create_by" varchar(64) COLLATE "pg_catalog"."default",
+                                          "create_time" timestamp(0),
+                                          "update_by" varchar(64) COLLATE "pg_catalog"."default",
+                                          "update_time" timestamp(0),
+                                          "remark" varchar(500) COLLATE "pg_catalog"."default"
 )
 ;
+COMMENT ON COLUMN "public"."sys_dict_type"."dict_id" IS '字典主键';
+COMMENT ON COLUMN "public"."sys_dict_type"."dict_name" IS '字典名称';
+COMMENT ON COLUMN "public"."sys_dict_type"."dict_type" IS '字典类型';
+COMMENT ON COLUMN "public"."sys_dict_type"."status" IS '状态（0正常 1停用）';
+COMMENT ON COLUMN "public"."sys_dict_type"."create_by" IS '创建者';
+COMMENT ON COLUMN "public"."sys_dict_type"."create_time" IS '创建时间';
+COMMENT ON COLUMN "public"."sys_dict_type"."update_by" IS '更新者';
+COMMENT ON COLUMN "public"."sys_dict_type"."update_time" IS '更新时间';
+COMMENT ON COLUMN "public"."sys_dict_type"."remark" IS '备注';
+COMMENT ON TABLE "public"."sys_dict_type" IS '字典类型表';
 
 -- ----------------------------
 -- Records of sys_dict_type
@@ -628,21 +679,35 @@ INSERT INTO "public"."sys_dict_type" VALUES (101, '请假类型', 'activiti_leav
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."sys_job";
 CREATE TABLE "public"."sys_job" (
-  "job_id" int8 NOT NULL DEFAULT nextval('sys_job_job_id_seq'::regclass),
-  "job_name" varchar(64) COLLATE "pg_catalog"."default" NOT NULL,
-  "job_group" varchar(64) COLLATE "pg_catalog"."default" NOT NULL DEFAULT 'DEFAULT'::character varying,
-  "invoke_target" varchar(500) COLLATE "pg_catalog"."default" NOT NULL,
-  "cron_expression" varchar(255) COLLATE "pg_catalog"."default",
-  "misfire_policy" varchar(20) COLLATE "pg_catalog"."default" DEFAULT '3'::character varying,
-  "concurrent" varchar(3) COLLATE "pg_catalog"."default" DEFAULT '1'::character varying,
-  "status" varchar(3) COLLATE "pg_catalog"."default" DEFAULT '0'::character varying,
-  "create_by" varchar(64) COLLATE "pg_catalog"."default",
-  "create_time" timestamp(0),
-  "update_by" varchar(64) COLLATE "pg_catalog"."default",
-  "update_time" timestamp(0),
-  "remark" varchar(500) COLLATE "pg_catalog"."default"
+                                    "job_id" int8 NOT NULL DEFAULT nextval('sys_job_job_id_seq'::regclass),
+                                    "job_name" varchar(64) COLLATE "pg_catalog"."default" NOT NULL,
+                                    "job_group" varchar(64) COLLATE "pg_catalog"."default" NOT NULL DEFAULT 'DEFAULT'::character varying,
+                                    "invoke_target" varchar(500) COLLATE "pg_catalog"."default" NOT NULL,
+                                    "cron_expression" varchar(255) COLLATE "pg_catalog"."default",
+                                    "misfire_policy" varchar(20) COLLATE "pg_catalog"."default" DEFAULT '3'::character varying,
+                                    "concurrent" varchar(3) COLLATE "pg_catalog"."default" DEFAULT '1'::character varying,
+                                    "status" varchar(3) COLLATE "pg_catalog"."default" DEFAULT '0'::character varying,
+                                    "create_by" varchar(64) COLLATE "pg_catalog"."default",
+                                    "create_time" timestamp(0),
+                                    "update_by" varchar(64) COLLATE "pg_catalog"."default",
+                                    "update_time" timestamp(0),
+                                    "remark" varchar(500) COLLATE "pg_catalog"."default"
 )
 ;
+COMMENT ON COLUMN "public"."sys_job"."job_id" IS '任务ID';
+COMMENT ON COLUMN "public"."sys_job"."job_name" IS '任务名称';
+COMMENT ON COLUMN "public"."sys_job"."job_group" IS '任务组名';
+COMMENT ON COLUMN "public"."sys_job"."invoke_target" IS '调用目标字符串';
+COMMENT ON COLUMN "public"."sys_job"."cron_expression" IS 'cron执行表达式';
+COMMENT ON COLUMN "public"."sys_job"."misfire_policy" IS '计划执行错误策略（1立即执行 2执行一次 3放弃执行）';
+COMMENT ON COLUMN "public"."sys_job"."concurrent" IS '是否并发执行（0允许 1禁止）';
+COMMENT ON COLUMN "public"."sys_job"."status" IS '状态（0正常 1暂停）';
+COMMENT ON COLUMN "public"."sys_job"."create_by" IS '创建者';
+COMMENT ON COLUMN "public"."sys_job"."create_time" IS '创建时间';
+COMMENT ON COLUMN "public"."sys_job"."update_by" IS '更新者';
+COMMENT ON COLUMN "public"."sys_job"."update_time" IS '更新时间';
+COMMENT ON COLUMN "public"."sys_job"."remark" IS '备注信息';
+COMMENT ON TABLE "public"."sys_job" IS '定时任务调度表';
 
 -- ----------------------------
 -- Records of sys_job
@@ -656,16 +721,25 @@ INSERT INTO "public"."sys_job" VALUES (3, '系统默认（多参）', 'DEFAULT',
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."sys_job_log";
 CREATE TABLE "public"."sys_job_log" (
-  "job_log_id" int8 NOT NULL DEFAULT nextval('sys_job_log_job_log_id_seq'::regclass),
-  "job_name" varchar(64) COLLATE "pg_catalog"."default" NOT NULL,
-  "job_group" varchar(64) COLLATE "pg_catalog"."default" NOT NULL,
-  "invoke_target" varchar(500) COLLATE "pg_catalog"."default" NOT NULL,
-  "job_message" varchar(500) COLLATE "pg_catalog"."default",
-  "status" varchar(3) COLLATE "pg_catalog"."default" DEFAULT '0'::character varying,
-  "exception_info" varchar(2000) COLLATE "pg_catalog"."default",
-  "create_time" timestamp(0)
+                                        "job_log_id" int8 NOT NULL DEFAULT nextval('sys_job_log_job_log_id_seq'::regclass),
+                                        "job_name" varchar(64) COLLATE "pg_catalog"."default" NOT NULL,
+                                        "job_group" varchar(64) COLLATE "pg_catalog"."default" NOT NULL,
+                                        "invoke_target" varchar(500) COLLATE "pg_catalog"."default" NOT NULL,
+                                        "job_message" varchar(500) COLLATE "pg_catalog"."default",
+                                        "status" varchar(3) COLLATE "pg_catalog"."default" DEFAULT '0'::character varying,
+                                        "exception_info" varchar(2000) COLLATE "pg_catalog"."default",
+                                        "create_time" timestamp(0)
 )
 ;
+COMMENT ON COLUMN "public"."sys_job_log"."job_log_id" IS '任务日志ID';
+COMMENT ON COLUMN "public"."sys_job_log"."job_name" IS '任务名称';
+COMMENT ON COLUMN "public"."sys_job_log"."job_group" IS '任务组名';
+COMMENT ON COLUMN "public"."sys_job_log"."invoke_target" IS '调用目标字符串';
+COMMENT ON COLUMN "public"."sys_job_log"."job_message" IS '日志信息';
+COMMENT ON COLUMN "public"."sys_job_log"."status" IS '执行状态（0正常 1失败）';
+COMMENT ON COLUMN "public"."sys_job_log"."exception_info" IS '异常信息';
+COMMENT ON COLUMN "public"."sys_job_log"."create_time" IS '创建时间';
+COMMENT ON TABLE "public"."sys_job_log" IS '定时任务调度日志表';
 
 -- ----------------------------
 -- Records of sys_job_log
@@ -676,48 +750,99 @@ CREATE TABLE "public"."sys_job_log" (
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."sys_logininfor";
 CREATE TABLE "public"."sys_logininfor" (
-  "info_id" int8 NOT NULL DEFAULT nextval('sys_logininfor_info_id_seq'::regclass),
-  "user_name" varchar(50) COLLATE "pg_catalog"."default",
-  "ipaddr" varchar(50) COLLATE "pg_catalog"."default",
-  "login_location" varchar(255) COLLATE "pg_catalog"."default",
-  "browser" varchar(50) COLLATE "pg_catalog"."default",
-  "os" varchar(50) COLLATE "pg_catalog"."default",
-  "status" varchar(3) COLLATE "pg_catalog"."default" DEFAULT '0'::character varying,
-  "msg" varchar(255) COLLATE "pg_catalog"."default",
-  "login_time" timestamp(0)
+                                           "info_id" int8 NOT NULL DEFAULT nextval('sys_logininfor_info_id_seq'::regclass),
+                                           "user_name" varchar(50) COLLATE "pg_catalog"."default",
+                                           "ipaddr" varchar(50) COLLATE "pg_catalog"."default",
+                                           "login_location" varchar(255) COLLATE "pg_catalog"."default",
+                                           "browser" varchar(50) COLLATE "pg_catalog"."default",
+                                           "os" varchar(50) COLLATE "pg_catalog"."default",
+                                           "status" varchar(3) COLLATE "pg_catalog"."default" DEFAULT '0'::character varying,
+                                           "msg" varchar(255) COLLATE "pg_catalog"."default",
+                                           "login_time" timestamp(0)
 )
 ;
+COMMENT ON COLUMN "public"."sys_logininfor"."info_id" IS '访问ID';
+COMMENT ON COLUMN "public"."sys_logininfor"."user_name" IS '用户账号';
+COMMENT ON COLUMN "public"."sys_logininfor"."ipaddr" IS '登录IP地址';
+COMMENT ON COLUMN "public"."sys_logininfor"."login_location" IS '登录地点';
+COMMENT ON COLUMN "public"."sys_logininfor"."browser" IS '浏览器类型';
+COMMENT ON COLUMN "public"."sys_logininfor"."os" IS '操作系统';
+COMMENT ON COLUMN "public"."sys_logininfor"."status" IS '登录状态（0成功 1失败）';
+COMMENT ON COLUMN "public"."sys_logininfor"."msg" IS '提示消息';
+COMMENT ON COLUMN "public"."sys_logininfor"."login_time" IS '访问时间';
+COMMENT ON TABLE "public"."sys_logininfor" IS '系统访问记录';
 
 -- ----------------------------
 -- Records of sys_logininfor
 -- ----------------------------
 INSERT INTO "public"."sys_logininfor" VALUES (1, 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '200', '登录成功', '2022-10-13 17:51:21');
+INSERT INTO "public"."sys_logininfor" VALUES (2, 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-10-14 17:06:26');
+INSERT INTO "public"."sys_logininfor" VALUES (3, 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '1', '验证码已失效', '2022-10-14 17:07:55');
+INSERT INTO "public"."sys_logininfor" VALUES (4, 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-10-14 17:07:58');
+INSERT INTO "public"."sys_logininfor" VALUES (5, 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '退出成功', '2022-10-14 17:08:15');
+INSERT INTO "public"."sys_logininfor" VALUES (6, 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-10-14 17:08:27');
+INSERT INTO "public"."sys_logininfor" VALUES (7, 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-10-14 17:44:50');
+INSERT INTO "public"."sys_logininfor" VALUES (8, 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '1', '用户不存在/密码错误', '2022-10-17 17:22:20');
+INSERT INTO "public"."sys_logininfor" VALUES (9, 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '1', '验证码错误', '2022-10-17 17:22:36');
+INSERT INTO "public"."sys_logininfor" VALUES (10, 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '1', '用户不存在/密码错误', '2022-10-17 17:22:44');
+INSERT INTO "public"."sys_logininfor" VALUES (11, 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '1', '验证码错误', '2022-10-17 17:22:49');
+INSERT INTO "public"."sys_logininfor" VALUES (12, 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '1', '用户不存在/密码错误', '2022-10-17 17:22:53');
+INSERT INTO "public"."sys_logininfor" VALUES (13, 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '1', '验证码已失效', '2022-10-17 17:48:16');
+INSERT INTO "public"."sys_logininfor" VALUES (14, 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '1', '验证码错误', '2022-10-17 17:48:22');
+INSERT INTO "public"."sys_logininfor" VALUES (15, 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '1', '用户不存在/密码错误', '2022-10-17 17:48:53');
+INSERT INTO "public"."sys_logininfor" VALUES (16, 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '1', '验证码已失效', '2022-10-17 17:49:01');
+INSERT INTO "public"."sys_logininfor" VALUES (17, 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '1', '用户不存在/密码错误', '2022-10-17 17:49:08');
+INSERT INTO "public"."sys_logininfor" VALUES (18, 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '1', '验证码错误', '2022-10-17 17:49:09');
+INSERT INTO "public"."sys_logininfor" VALUES (19, 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '1', '验证码已失效', '2022-10-17 17:49:09');
+INSERT INTO "public"."sys_logininfor" VALUES (20, 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '1', '验证码错误', '2022-10-17 17:49:10');
+INSERT INTO "public"."sys_logininfor" VALUES (21, 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '1', '用户不存在/密码错误', '2022-10-17 17:49:14');
+INSERT INTO "public"."sys_logininfor" VALUES (22, 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '1', '验证码已失效', '2022-10-17 17:51:36');
+INSERT INTO "public"."sys_logininfor" VALUES (23, 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-10-17 17:51:41');
+INSERT INTO "public"."sys_logininfor" VALUES (24, 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-10-17 17:52:12');
 
 -- ----------------------------
 -- Table structure for sys_menu
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."sys_menu";
 CREATE TABLE "public"."sys_menu" (
-  "menu_id" int8 NOT NULL DEFAULT nextval('sys_menu_menu_id_seq'::regclass),
-  "menu_name" varchar(50) COLLATE "pg_catalog"."default" NOT NULL,
-  "parent_id" int8 DEFAULT 0,
-  "order_num" int4 DEFAULT 0,
-  "path" varchar(200) COLLATE "pg_catalog"."default",
-  "component" varchar(255) COLLATE "pg_catalog"."default",
-  "is_frame" int4 DEFAULT 1,
-  "is_cache" int4 DEFAULT 0,
-  "menu_type" varchar(3) COLLATE "pg_catalog"."default",
-  "visible" varchar(3) COLLATE "pg_catalog"."default" DEFAULT '0'::character varying,
-  "status" varchar(3) COLLATE "pg_catalog"."default" DEFAULT '0'::character varying,
-  "perms" varchar(100) COLLATE "pg_catalog"."default",
-  "icon" varchar(100) COLLATE "pg_catalog"."default" DEFAULT '#'::character varying,
-  "create_by" varchar(64) COLLATE "pg_catalog"."default",
-  "create_time" timestamp(0),
-  "update_by" varchar(64) COLLATE "pg_catalog"."default",
-  "update_time" timestamp(0),
-  "remark" varchar(500) COLLATE "pg_catalog"."default"
+                                     "menu_id" int8 NOT NULL DEFAULT nextval('sys_menu_menu_id_seq'::regclass),
+                                     "menu_name" varchar(50) COLLATE "pg_catalog"."default" NOT NULL,
+                                     "parent_id" int8 DEFAULT 0,
+                                     "order_num" int4 DEFAULT 0,
+                                     "path" varchar(200) COLLATE "pg_catalog"."default",
+                                     "component" varchar(255) COLLATE "pg_catalog"."default",
+                                     "is_frame" int4 DEFAULT 1,
+                                     "is_cache" int4 DEFAULT 0,
+                                     "menu_type" varchar(3) COLLATE "pg_catalog"."default",
+                                     "visible" varchar(3) COLLATE "pg_catalog"."default" DEFAULT '0'::character varying,
+                                     "status" varchar(3) COLLATE "pg_catalog"."default" DEFAULT '0'::character varying,
+                                     "perms" varchar(100) COLLATE "pg_catalog"."default",
+                                     "icon" varchar(100) COLLATE "pg_catalog"."default" DEFAULT '#'::character varying,
+                                     "create_by" varchar(64) COLLATE "pg_catalog"."default",
+                                     "create_time" timestamp(0),
+                                     "update_by" varchar(64) COLLATE "pg_catalog"."default",
+                                     "update_time" timestamp(0),
+                                     "remark" varchar(500) COLLATE "pg_catalog"."default"
 )
 ;
+COMMENT ON COLUMN "public"."sys_menu"."menu_id" IS '菜单ID';
+COMMENT ON COLUMN "public"."sys_menu"."menu_name" IS '菜单名称';
+COMMENT ON COLUMN "public"."sys_menu"."parent_id" IS '父菜单ID';
+COMMENT ON COLUMN "public"."sys_menu"."order_num" IS '显示顺序';
+COMMENT ON COLUMN "public"."sys_menu"."path" IS '路由地址';
+COMMENT ON COLUMN "public"."sys_menu"."component" IS '组件路径';
+COMMENT ON COLUMN "public"."sys_menu"."is_frame" IS '是否为外链（0是 1否）';
+COMMENT ON COLUMN "public"."sys_menu"."is_cache" IS '是否缓存（0缓存 1不缓存）';
+COMMENT ON COLUMN "public"."sys_menu"."menu_type" IS '菜单类型（M目录 C菜单 F按钮）';
+COMMENT ON COLUMN "public"."sys_menu"."visible" IS '菜单状态（0显示 1隐藏）';
+COMMENT ON COLUMN "public"."sys_menu"."status" IS '菜单状态（0正常 1停用）';
+COMMENT ON COLUMN "public"."sys_menu"."perms" IS '权限标识';
+COMMENT ON COLUMN "public"."sys_menu"."icon" IS '菜单图标';
+COMMENT ON COLUMN "public"."sys_menu"."create_by" IS '创建者';
+COMMENT ON COLUMN "public"."sys_menu"."create_time" IS '创建时间';
+COMMENT ON COLUMN "public"."sys_menu"."update_by" IS '更新者';
+COMMENT ON COLUMN "public"."sys_menu"."update_time" IS '更新时间';
+COMMENT ON TABLE "public"."sys_menu" IS '菜单权限表';
 
 -- ----------------------------
 -- Records of sys_menu
@@ -778,18 +903,19 @@ INSERT INTO "public"."sys_menu" VALUES (1027, '字典新增', 105, 2, '#', '', 1
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."sys_notice";
 CREATE TABLE "public"."sys_notice" (
-  "notice_id" int4 NOT NULL DEFAULT nextval('sys_notice_notice_id_seq'::regclass),
-  "notice_title" varchar(50) COLLATE "pg_catalog"."default" NOT NULL,
-  "notice_type" varchar(3) COLLATE "pg_catalog"."default" NOT NULL,
-  "notice_content" bytea,
-  "status" varchar(3) COLLATE "pg_catalog"."default" DEFAULT '0'::character varying,
-  "create_by" varchar(64) COLLATE "pg_catalog"."default",
-  "create_time" timestamp(0),
-  "update_by" varchar(64) COLLATE "pg_catalog"."default",
-  "update_time" timestamp(0),
-  "remark" varchar(255) COLLATE "pg_catalog"."default"
+                                       "notice_id" int4 NOT NULL DEFAULT nextval('sys_notice_notice_id_seq'::regclass),
+                                       "notice_title" varchar(50) COLLATE "pg_catalog"."default" NOT NULL,
+                                       "notice_type" varchar(3) COLLATE "pg_catalog"."default" NOT NULL,
+                                       "notice_content" bytea,
+                                       "status" varchar(3) COLLATE "pg_catalog"."default" DEFAULT '0'::character varying,
+                                       "create_by" varchar(64) COLLATE "pg_catalog"."default",
+                                       "create_time" timestamp(0),
+                                       "update_by" varchar(64) COLLATE "pg_catalog"."default",
+                                       "update_time" timestamp(0),
+                                       "remark" varchar(255) COLLATE "pg_catalog"."default"
 )
 ;
+COMMENT ON TABLE "public"."sys_notice" IS '通知公告表';
 
 -- ----------------------------
 -- Records of sys_notice
@@ -802,24 +928,41 @@ INSERT INTO "public"."sys_notice" VALUES (2, '维护通知：2018-07-01 若依�
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."sys_oper_log";
 CREATE TABLE "public"."sys_oper_log" (
-  "oper_id" int8 NOT NULL DEFAULT nextval('sys_oper_log_oper_id_seq'::regclass),
-  "title" varchar(50) COLLATE "pg_catalog"."default",
-  "business_type" int4 DEFAULT 0,
-  "method" varchar(100) COLLATE "pg_catalog"."default",
-  "request_method" varchar(10) COLLATE "pg_catalog"."default",
-  "operator_type" int4 DEFAULT 0,
-  "oper_name" varchar(50) COLLATE "pg_catalog"."default",
-  "dept_name" varchar(50) COLLATE "pg_catalog"."default",
-  "oper_url" varchar(255) COLLATE "pg_catalog"."default",
-  "oper_ip" varchar(50) COLLATE "pg_catalog"."default",
-  "oper_location" varchar(255) COLLATE "pg_catalog"."default",
-  "oper_param" varchar(2000) COLLATE "pg_catalog"."default",
-  "json_result" varchar(2000) COLLATE "pg_catalog"."default",
-  "status" int4 DEFAULT 0,
-  "error_msg" varchar(2000) COLLATE "pg_catalog"."default",
-  "oper_time" timestamp(0)
+                                         "oper_id" int8 NOT NULL DEFAULT nextval('sys_oper_log_oper_id_seq'::regclass),
+                                         "title" varchar(50) COLLATE "pg_catalog"."default",
+                                         "business_type" int4 DEFAULT 0,
+                                         "method" varchar(100) COLLATE "pg_catalog"."default",
+                                         "request_method" varchar(10) COLLATE "pg_catalog"."default",
+                                         "operator_type" int4 DEFAULT 0,
+                                         "oper_name" varchar(50) COLLATE "pg_catalog"."default",
+                                         "dept_name" varchar(50) COLLATE "pg_catalog"."default",
+                                         "oper_url" varchar(255) COLLATE "pg_catalog"."default",
+                                         "oper_ip" varchar(50) COLLATE "pg_catalog"."default",
+                                         "oper_location" varchar(255) COLLATE "pg_catalog"."default",
+                                         "oper_param" varchar(2000) COLLATE "pg_catalog"."default",
+                                         "json_result" varchar(2000) COLLATE "pg_catalog"."default",
+                                         "status" int4 DEFAULT 0,
+                                         "error_msg" varchar(2000) COLLATE "pg_catalog"."default",
+                                         "oper_time" timestamp(0)
 )
 ;
+COMMENT ON COLUMN "public"."sys_oper_log"."oper_id" IS '日志主键';
+COMMENT ON COLUMN "public"."sys_oper_log"."title" IS '模块标题';
+COMMENT ON COLUMN "public"."sys_oper_log"."business_type" IS '业务类型（0其它 1新增 2修改 3删除）';
+COMMENT ON COLUMN "public"."sys_oper_log"."method" IS '方法名称';
+COMMENT ON COLUMN "public"."sys_oper_log"."request_method" IS '请求方式';
+COMMENT ON COLUMN "public"."sys_oper_log"."operator_type" IS '操作类别（0其它 1后台用户 2手机端用户）';
+COMMENT ON COLUMN "public"."sys_oper_log"."oper_name" IS '操作人员';
+COMMENT ON COLUMN "public"."sys_oper_log"."dept_name" IS '部门名称';
+COMMENT ON COLUMN "public"."sys_oper_log"."oper_url" IS '请求URL';
+COMMENT ON COLUMN "public"."sys_oper_log"."oper_ip" IS '主机地址';
+COMMENT ON COLUMN "public"."sys_oper_log"."oper_location" IS '操作地点';
+COMMENT ON COLUMN "public"."sys_oper_log"."oper_param" IS '请求参数';
+COMMENT ON COLUMN "public"."sys_oper_log"."json_result" IS '返回参数';
+COMMENT ON COLUMN "public"."sys_oper_log"."status" IS '操作状态（0正常 1异常）';
+COMMENT ON COLUMN "public"."sys_oper_log"."error_msg" IS '错误消息';
+COMMENT ON COLUMN "public"."sys_oper_log"."oper_time" IS '操作时间';
+COMMENT ON TABLE "public"."sys_oper_log" IS '操作日志记录';
 
 -- ----------------------------
 -- Records of sys_oper_log
@@ -830,18 +973,29 @@ CREATE TABLE "public"."sys_oper_log" (
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."sys_post";
 CREATE TABLE "public"."sys_post" (
-  "post_id" int8 NOT NULL DEFAULT nextval('sys_post_post_id_seq'::regclass),
-  "post_code" varchar(64) COLLATE "pg_catalog"."default" NOT NULL,
-  "post_name" varchar(50) COLLATE "pg_catalog"."default" NOT NULL,
-  "post_sort" int4 NOT NULL,
-  "status" varchar(3) COLLATE "pg_catalog"."default" NOT NULL,
-  "create_by" varchar(64) COLLATE "pg_catalog"."default",
-  "create_time" timestamp(0),
-  "update_by" varchar(64) COLLATE "pg_catalog"."default",
-  "update_time" timestamp(0),
-  "remark" varchar(500) COLLATE "pg_catalog"."default"
+                                     "post_id" int8 NOT NULL DEFAULT nextval('sys_post_post_id_seq'::regclass),
+                                     "post_code" varchar(64) COLLATE "pg_catalog"."default" NOT NULL,
+                                     "post_name" varchar(50) COLLATE "pg_catalog"."default" NOT NULL,
+                                     "post_sort" int4 NOT NULL,
+                                     "status" varchar(3) COLLATE "pg_catalog"."default" NOT NULL,
+                                     "create_by" varchar(64) COLLATE "pg_catalog"."default",
+                                     "create_time" timestamp(0),
+                                     "update_by" varchar(64) COLLATE "pg_catalog"."default",
+                                     "update_time" timestamp(0),
+                                     "remark" varchar(500) COLLATE "pg_catalog"."default"
 )
 ;
+COMMENT ON COLUMN "public"."sys_post"."post_id" IS '岗位ID';
+COMMENT ON COLUMN "public"."sys_post"."post_code" IS '岗位编码';
+COMMENT ON COLUMN "public"."sys_post"."post_name" IS '岗位名称';
+COMMENT ON COLUMN "public"."sys_post"."post_sort" IS '显示顺序';
+COMMENT ON COLUMN "public"."sys_post"."status" IS '状态（0正常 1停用）';
+COMMENT ON COLUMN "public"."sys_post"."create_by" IS '创建者';
+COMMENT ON COLUMN "public"."sys_post"."create_time" IS '创建时间';
+COMMENT ON COLUMN "public"."sys_post"."update_by" IS '更新者';
+COMMENT ON COLUMN "public"."sys_post"."update_time" IS '更新时间';
+COMMENT ON COLUMN "public"."sys_post"."remark" IS '备注';
+COMMENT ON TABLE "public"."sys_post" IS '岗位信息表';
 
 -- ----------------------------
 -- Records of sys_post
@@ -856,22 +1010,37 @@ INSERT INTO "public"."sys_post" VALUES (4, 'user', '普通员工', 4, '0', 'admi
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."sys_role";
 CREATE TABLE "public"."sys_role" (
-  "role_id" int8 NOT NULL DEFAULT nextval('sys_role_role_id_seq'::regclass),
-  "role_name" varchar(30) COLLATE "pg_catalog"."default" NOT NULL,
-  "role_key" varchar(100) COLLATE "pg_catalog"."default" NOT NULL,
-  "role_sort" int4 NOT NULL,
-  "data_scope" varchar(3) COLLATE "pg_catalog"."default" DEFAULT '1'::character varying,
-  "menu_check_strictly" int2 DEFAULT 1,
-  "dept_check_strictly" int2 DEFAULT 1,
-  "status" varchar(3) COLLATE "pg_catalog"."default" NOT NULL,
-  "del_flag" varchar(3) COLLATE "pg_catalog"."default" DEFAULT '0'::character varying,
-  "create_by" varchar(64) COLLATE "pg_catalog"."default",
-  "create_time" timestamp(0),
-  "update_by" varchar(64) COLLATE "pg_catalog"."default",
-  "update_time" timestamp(0),
-  "remark" varchar(500) COLLATE "pg_catalog"."default"
+                                     "role_id" int8 NOT NULL DEFAULT nextval('sys_role_role_id_seq'::regclass),
+                                     "role_name" varchar(30) COLLATE "pg_catalog"."default" NOT NULL,
+                                     "role_key" varchar(100) COLLATE "pg_catalog"."default" NOT NULL,
+                                     "role_sort" int4 NOT NULL,
+                                     "data_scope" varchar(3) COLLATE "pg_catalog"."default" DEFAULT '1'::character varying,
+                                     "menu_check_strictly" int2 DEFAULT 1,
+                                     "dept_check_strictly" int2 DEFAULT 1,
+                                     "status" varchar(3) COLLATE "pg_catalog"."default" NOT NULL,
+                                     "del_flag" varchar(3) COLLATE "pg_catalog"."default" DEFAULT '0'::character varying,
+                                     "create_by" varchar(64) COLLATE "pg_catalog"."default",
+                                     "create_time" timestamp(0),
+                                     "update_by" varchar(64) COLLATE "pg_catalog"."default",
+                                     "update_time" timestamp(0),
+                                     "remark" varchar(500) COLLATE "pg_catalog"."default"
 )
 ;
+COMMENT ON COLUMN "public"."sys_role"."role_id" IS '角色ID';
+COMMENT ON COLUMN "public"."sys_role"."role_name" IS '角色名称';
+COMMENT ON COLUMN "public"."sys_role"."role_key" IS '角色权限字符串';
+COMMENT ON COLUMN "public"."sys_role"."role_sort" IS '显示顺序';
+COMMENT ON COLUMN "public"."sys_role"."data_scope" IS '数据范围（1：全部数据权限 2：自定数据权限 3：本部门数据权限 4：本部门及以下数据权限）';
+COMMENT ON COLUMN "public"."sys_role"."menu_check_strictly" IS '菜单树选择项是否关联显示';
+COMMENT ON COLUMN "public"."sys_role"."dept_check_strictly" IS '部门树选择项是否关联显示';
+COMMENT ON COLUMN "public"."sys_role"."status" IS '角色状态（0正常 1停用）';
+COMMENT ON COLUMN "public"."sys_role"."del_flag" IS '删除标志（0代表存在 2代表删除）';
+COMMENT ON COLUMN "public"."sys_role"."create_by" IS '创建者';
+COMMENT ON COLUMN "public"."sys_role"."create_time" IS '创建时间';
+COMMENT ON COLUMN "public"."sys_role"."update_by" IS '更新者';
+COMMENT ON COLUMN "public"."sys_role"."update_time" IS '更新时间';
+COMMENT ON COLUMN "public"."sys_role"."remark" IS '备注';
+COMMENT ON TABLE "public"."sys_role" IS '角色信息表';
 
 -- ----------------------------
 -- Records of sys_role
@@ -885,10 +1054,13 @@ INSERT INTO "public"."sys_role" VALUES (100, '部门历史OA', 'dept', 3, '4', 1
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."sys_role_dept";
 CREATE TABLE "public"."sys_role_dept" (
-  "role_id" int8 NOT NULL,
-  "dept_id" int8 NOT NULL
+                                          "role_id" int8 NOT NULL,
+                                          "dept_id" int8 NOT NULL
 )
 ;
+COMMENT ON COLUMN "public"."sys_role_dept"."role_id" IS '角色ID';
+COMMENT ON COLUMN "public"."sys_role_dept"."dept_id" IS '部门ID';
+COMMENT ON TABLE "public"."sys_role_dept" IS '角色和部门关联表';
 
 -- ----------------------------
 -- Records of sys_role_dept
@@ -901,10 +1073,13 @@ INSERT INTO "public"."sys_role_dept" VALUES (2, 105);
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."sys_role_menu";
 CREATE TABLE "public"."sys_role_menu" (
-  "role_id" int8 NOT NULL,
-  "menu_id" int8 NOT NULL
+                                          "role_id" int8 NOT NULL,
+                                          "menu_id" int8 NOT NULL
 )
 ;
+COMMENT ON COLUMN "public"."sys_role_menu"."role_id" IS '角色ID';
+COMMENT ON COLUMN "public"."sys_role_menu"."menu_id" IS '菜单ID';
+COMMENT ON TABLE "public"."sys_role_menu" IS '角色和菜单关联表';
 
 -- ----------------------------
 -- Records of sys_role_menu
@@ -935,27 +1110,45 @@ INSERT INTO "public"."sys_role_menu" VALUES (100, 2010);
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."sys_user";
 CREATE TABLE "public"."sys_user" (
-  "user_id" int8 NOT NULL DEFAULT nextval('sys_user_user_id_seq'::regclass),
-  "dept_id" int8,
-  "user_name" varchar(30) COLLATE "pg_catalog"."default" NOT NULL,
-  "nick_name" varchar(30) COLLATE "pg_catalog"."default" NOT NULL,
-  "user_type" varchar(2) COLLATE "pg_catalog"."default" DEFAULT '00'::character varying,
-  "email" varchar(50) COLLATE "pg_catalog"."default",
-  "phonenumber" varchar(11) COLLATE "pg_catalog"."default",
-  "sex" varchar(3) COLLATE "pg_catalog"."default" DEFAULT '0'::character varying,
-  "avatar" varchar(256) COLLATE "pg_catalog"."default",
-  "password" varchar(100) COLLATE "pg_catalog"."default",
-  "status" varchar(3) COLLATE "pg_catalog"."default" DEFAULT '0'::character varying,
-  "del_flag" varchar(3) COLLATE "pg_catalog"."default" DEFAULT '0'::character varying,
-  "login_ip" varchar(50) COLLATE "pg_catalog"."default",
-  "login_date" timestamp(0),
-  "create_by" varchar(64) COLLATE "pg_catalog"."default",
-  "create_time" timestamp(0),
-  "update_by" varchar(64) COLLATE "pg_catalog"."default",
-  "update_time" timestamp(0),
-  "remark" varchar(500) COLLATE "pg_catalog"."default"
+                                     "user_id" int8 NOT NULL DEFAULT nextval('sys_user_user_id_seq'::regclass),
+                                     "dept_id" int8,
+                                     "user_name" varchar(30) COLLATE "pg_catalog"."default" NOT NULL,
+                                     "nick_name" varchar(30) COLLATE "pg_catalog"."default" NOT NULL,
+                                     "user_type" varchar(2) COLLATE "pg_catalog"."default" DEFAULT '00'::character varying,
+                                     "email" varchar(50) COLLATE "pg_catalog"."default",
+                                     "phonenumber" varchar(11) COLLATE "pg_catalog"."default",
+                                     "sex" varchar(3) COLLATE "pg_catalog"."default" DEFAULT '0'::character varying,
+                                     "avatar" varchar(256) COLLATE "pg_catalog"."default",
+                                     "password" varchar(100) COLLATE "pg_catalog"."default",
+                                     "status" varchar(3) COLLATE "pg_catalog"."default" DEFAULT '0'::character varying,
+                                     "del_flag" varchar(3) COLLATE "pg_catalog"."default" DEFAULT '0'::character varying,
+                                     "login_ip" varchar(50) COLLATE "pg_catalog"."default",
+                                     "login_date" timestamp(0),
+                                     "create_by" varchar(64) COLLATE "pg_catalog"."default",
+                                     "create_time" timestamp(0),
+                                     "update_by" varchar(64) COLLATE "pg_catalog"."default",
+                                     "update_time" timestamp(0),
+                                     "remark" varchar(500) COLLATE "pg_catalog"."default"
 )
 ;
+COMMENT ON COLUMN "public"."sys_user"."user_id" IS '用户ID';
+COMMENT ON COLUMN "public"."sys_user"."dept_id" IS '部门ID';
+COMMENT ON COLUMN "public"."sys_user"."user_name" IS '用户账号';
+COMMENT ON COLUMN "public"."sys_user"."nick_name" IS '用户昵称';
+COMMENT ON COLUMN "public"."sys_user"."user_type" IS '用户类型（00系统用户）';
+COMMENT ON COLUMN "public"."sys_user"."email" IS '用户邮箱';
+COMMENT ON COLUMN "public"."sys_user"."phonenumber" IS '手机号码';
+COMMENT ON COLUMN "public"."sys_user"."sex" IS '用户性别（0男 1女 2未知）';
+COMMENT ON COLUMN "public"."sys_user"."avatar" IS '头像地址';
+COMMENT ON COLUMN "public"."sys_user"."password" IS '密码';
+COMMENT ON COLUMN "public"."sys_user"."status" IS '帐号状态（0正常 1停用）';
+COMMENT ON COLUMN "public"."sys_user"."del_flag" IS '删除标志（0代表存在 2代表删除）';
+COMMENT ON COLUMN "public"."sys_user"."login_ip" IS '最后登录IP';
+COMMENT ON COLUMN "public"."sys_user"."login_date" IS '最后登录时间';
+COMMENT ON COLUMN "public"."sys_user"."create_by" IS '创建者';
+COMMENT ON COLUMN "public"."sys_user"."create_time" IS '创建时间';
+COMMENT ON COLUMN "public"."sys_user"."update_by" IS '更新者';
+COMMENT ON TABLE "public"."sys_user" IS '用户信息表';
 
 -- ----------------------------
 -- Records of sys_user
@@ -973,10 +1166,13 @@ INSERT INTO "public"."sys_user" VALUES (104, 103, 'zhoucang', '周仓', '00', '5
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."sys_user_post";
 CREATE TABLE "public"."sys_user_post" (
-  "user_id" int8 NOT NULL,
-  "post_id" int8 NOT NULL
+                                          "user_id" int8 NOT NULL,
+                                          "post_id" int8 NOT NULL
 )
 ;
+COMMENT ON COLUMN "public"."sys_user_post"."user_id" IS '用户ID';
+COMMENT ON COLUMN "public"."sys_user_post"."post_id" IS '岗位ID';
+COMMENT ON TABLE "public"."sys_user_post" IS '用户关联岗位关系表';
 
 -- ----------------------------
 -- Records of sys_user_post
@@ -993,10 +1189,13 @@ INSERT INTO "public"."sys_user_post" VALUES (103, 2);
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."sys_user_role";
 CREATE TABLE "public"."sys_user_role" (
-  "user_id" int8 NOT NULL,
-  "role_id" int8 NOT NULL
+                                          "user_id" int8 NOT NULL,
+                                          "role_id" int8 NOT NULL
 )
 ;
+COMMENT ON COLUMN "public"."sys_user_role"."user_id" IS '用户ID';
+COMMENT ON COLUMN "public"."sys_user_role"."role_id" IS '角色ID';
+COMMENT ON TABLE "public"."sys_user_role" IS '用户关联角色表';
 
 -- ----------------------------
 -- Records of sys_user_role

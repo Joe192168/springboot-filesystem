@@ -181,6 +181,7 @@ public class SysRoleServiceImpl implements ISysRoleService
     public int insertRole(SysRole role)
     {
         // 新增角色信息
+        role.setCreateTime(new Date());
         roleMapper.insertRole(role);
         return insertRoleMenu(role);
     }
@@ -196,6 +197,7 @@ public class SysRoleServiceImpl implements ISysRoleService
     public int updateRole(SysRole role)
     {
         // 修改角色信息
+        role.setUpdateTime(new Date());
         roleMapper.updateRole(role);
         // 删除角色与菜单关联
         roleMenuMapper.deleteRoleMenuByRoleId(role.getRoleId());
